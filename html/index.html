@@ -25,6 +25,9 @@
 
     <!-- Custom styles for this template -->
     <link href="../css/home.css" rel="stylesheet">
+
+    <!-- Load the script "js/main.js" as our entry point -->
+    <script data-main="../js/main" src="../js/libs/require/require.js"></script>
   </head>
 <!-- NAVBAR (must be present in each page)
 ================================================== -->
@@ -41,11 +44,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="Home">Museum Manager</a>
+              <a class="navbar-brand" href="">Museum Manager</a>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="Home">Home</a></li>
+                <li class="active"><a href="">Home</a></li>
                 <li><a href="Artistes">Artistes</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Oeuvres <b class="caret"></b></a>
@@ -195,49 +198,7 @@
       </div><!-- /.container -->
     </div>
 
-    <!-- TEMPLATES -->
 
-
-
-    <!-- /TEMPLATES 
-    ================================================== -->
-
-    <script type="text/template" id="oeuvres-list-template">
-
-      <table class="table striped">
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Age</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% _.each(oeuvres, function(oeuvre) { %>
-            <tr>
-              <td><%= oeuvre.get('firstname')%></td>
-              <td><%= oeuvre.get('lastname')%></td>
-              <td><%= oeuvre.get('age')%></td>
-              <td></td>
-          <% }); %>
-        </tbody>
-      <table>
-    </script>
-
-    
-
-    <script type="text/template" id="add-oeuvre-template">
-
-      <form class="add-oeuvre-form">
-        <legend>Créer un oeuvre</legend>
-        <input type="text" name="firstname" placeholder="Firstname" />
-        <input type="text" name="lastname" placeholder="Lastname"/>
-        <input type="text" name="age" placeholder="Age"/>
-
-        <button type="submit" class="btn btn-primary btn-lg"></button>
-      </form>
-    </script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -245,72 +206,10 @@
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="../dist/js/bootstrap.min.js"></script>
     <script src="../js/holder.js"></script>
-    <script src="../js/underscore-min.js"></script>
-    <script src="../js/backbone-min.js"></script>
-    <script src="../js/signals.min.js"></script>
-    <script src="../js/crossroads.min.js"></script>
-    <script src="../js/router.js"></script>
+
 
     <script src="../js/home.js"></script>
-    <script>
 
-      $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
-        options.url = 'http://backbonejs-beginner.herokuapp.com' + options.url;
-      });
-
-      var Oeuvres = Backbone.Collection.extend({
-        url: '/users'
-      });
-
-      var OeuvreList = Backbone.View.extend({
-        el: '.container.marketing',
-        render: function () {
-          var that = this;
-          var oeuvres = new Oeuvres;
-
-          // on récupère les oeuvres en fetchant
-          oeuvres.fetch({
-            success: function (oeuvres) {
-              var template = _.template($('#oeuvres-list-template').html(), {oeuvres: oeuvres.models});
-              that.$el.html(template);
-            }
-          })
-        }
-      });
-
-      var AddOeuvre = Backbone.View.extend({
-        el: '#page',
-
-        render: function () {
-          var template = _.template($('#add-oeuvre-template').html(), {});
-          that.$el.html(template);        }
-      })
-
-    var Router = Backbone.Router.extend({
-      routes: {
-        '': 'home',
-        'new': 'addOeuvre'
-      }
-    });
-
-    var oeuvreList = new OeuvreList();
-    var addOeuvre = new AddOeuvre();
-    var router = new Router();
-
-    router.on('route:home', function() {
-      console.log("route: home");
-      oeuvreList.render();
-    });
-
-    router.on('route:addOeuvre', function() {
-      console.log("route: addOeuvre");
-      addOeuvre.render();
-    });
-
-
-
-    Backbone.history.start();
-    </script>
 
   </body>
 </html>

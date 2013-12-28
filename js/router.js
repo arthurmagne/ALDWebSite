@@ -3,9 +3,9 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'views/projects/list',
-  'views/users/list'
-], function($, _, Backbone, ProjectListView, UserListView){
+  'views/oeuvreList',
+  'views/addOeuvre'
+], function($, _, Backbone, OeuvreListView, AddOeuvreView){
   var AppRouter = Backbone.Router.extend({
     routes: {
         '': 'home',
@@ -14,22 +14,24 @@ define([
   });
 
   var initialize = function(){
+
+
+	$.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
+        options.url = 'http://backbonejs-beginner.herokuapp.com' + options.url;
+    });
+
+
     var app_router = new AppRouter;
-    app_router.on('showProjects', function(){
-      // Call render on the module we loaded in via the dependency array
-      // 'views/projects/list'
-      var projectListView = new ProjectListView();
-      projectListView.render();
+    app_router.on('route:home', function() {
+      console.log("route: home");
+      oeuvreList = new OeuvreListView();
+      oeuvreList.render();
     });
-      // As above, call render on our loaded module
-      // 'views/users/list'
-    app_router.on('showUsers', function(){
-      var userListView = new UserListView();
-      userListView.render();
-    });
-    app_router.on('defaultAction', function(actions){
-      // We have no matching route, lets just log what the URL was
-      console.log('No route:', actions);
+
+    app_router.on('route:addOeuvre', function() {
+      console.log("route: addOeuvre");
+      addOeuvre = new AddOeuvreView();
+      addOeuvre.render();
     });
     Backbone.history.start();
   };
