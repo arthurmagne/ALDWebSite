@@ -1,0 +1,50 @@
+#wrapper{
+  margin-top: 150px;
+}
+
+#wrapper a{
+  text-decoration: none;
+  color: white;
+}
+
+.block-back{
+  position: relative;
+  background: #F3EDFA;
+  width: 283px;
+  height: 283px;
+  margin: 1px;
+  float: left;
+  overflow: hidden;
+}
+
+.oeuvre-img{
+  position: absolute;
+  width: 283px;
+  height: 283px;
+}
+
+.block-front{
+  position: absolute;
+  background: rgba(78, 57, 122, 0.5);
+  margin-left: -283px;
+  width: 283px;
+  height: 283px;
+  z-index: 10;
+
+  transition: all .3s ease;
+  -webkit-transition: all .3s ease-in-out;
+}
+
+.block-back:hover > a > .block-front{ 
+  margin-left: 0;
+}
+
+  
+.block-info{
+  margin-top: 30px;
+  margin-left: 35px;
+  z-index: 2;
+}
+
+
+

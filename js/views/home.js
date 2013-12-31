@@ -4,11 +4,11 @@ define([
   'backbone',
   // Using the Require.js text! plugin, we are loaded raw text
   // which will be used as our views primary template
-  'text!../../templates/addOeuvre.html',
+  'text!../../templates/home.html',
   'models/oeuvres'
-], function($, _, Backbone, oeuvresListTemplate, Oeuvres){
+], function($, _, Backbone, homeTemplate, Oeuvres){
   var OeuvreList = Backbone.View.extend({
-    el: '.container.marketing',
+    el: '#page',
     render: function () {
       var that = this;
       var oeuvres = new Oeuvres();
@@ -16,8 +16,7 @@ define([
       // on récupère les oeuvres en fetchant
       oeuvres.fetch({
         success: function (oeuvres) {
-          var template = _.template(oeuvresListTemplate, {oeuvres: oeuvres.models});
-          $('#myCarousel').addClass('hide');
+          var template = _.template(homeTemplate, {oeuvres: oeuvres.models});
           that.$el.html(template);
         }
       })

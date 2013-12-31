@@ -17,6 +17,7 @@ define([
       oeuvres.fetch({
         success: function (oeuvres) {
           var template = _.template(oeuvresListTemplate, {oeuvres: oeuvres.models});
+          $('#myCarousel').addClass('hide');
           that.$el.html(template);
         }
       })

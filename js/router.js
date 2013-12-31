@@ -4,34 +4,43 @@ define([
   'underscore',
   'backbone',
   'views/oeuvreList',
-  'views/addOeuvre'
-], function($, _, Backbone, OeuvreListView, AddOeuvreView){
+  'views/addOeuvre',
+  'views/home'
+], function($, _, Backbone, OeuvreListView, AddOeuvreView, HomeView){
   var AppRouter = Backbone.Router.extend({
     routes: {
         '': 'home',
-        'new': 'addOeuvre'
+        'new': 'addOeuvre',
+        'oeuvres': 'oeuvresList'
+    },
+    initialize: function() {
+    	$.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
+       		 options.url = 'http://backbonejs-beginner.herokuapp.com' + options.url;
+   		 });
     }
   });
 
   var initialize = function(){
 
 
-	$.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
-        options.url = 'http://backbonejs-beginner.herokuapp.com' + options.url;
-    });
-
-
     var app_router = new AppRouter;
+
     app_router.on('route:home', function() {
       console.log("route: home");
-      oeuvreList = new OeuvreListView();
-      oeuvreList.render();
+      homeView = new HomeView();
+      homeView.render();
     });
 
     app_router.on('route:addOeuvre', function() {
       console.log("route: addOeuvre");
       addOeuvre = new AddOeuvreView();
       addOeuvre.render();
+    });
+
+    app_router.on('route:oeuvresList', function() {
+      console.log("route: oeuvresList");
+      oeuvresList = new OeuvreListView();
+      oeuvresList.render();
     });
     Backbone.history.start();
   };

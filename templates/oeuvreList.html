@@ -1,19 +1,18 @@
-  <table class="table striped">
-    <thead>
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Age</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% _.each(oeuvres, function(oeuvre) { %>
-        <tr>
-          <td><%= oeuvre.get('firstname')%></td>
-          <td><%= oeuvre.get('lastname')%></td>
-          <td><%= oeuvre.get('age')%></td>
-          <td></td>
-      <% }); %>
-    </tbody>
-  <table>
+<div id="wrapper">
+  <div class="container">
+     <% _.each(oeuvres, function(oeuvre) { %>
+       <div class="block-back">
+        <img class="oeuvre-img" src="http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg"/>
+          <a href="#">
+            <div class="block-front">
+              <div class="block-info">
+                <p><%= oeuvre.get('firstname')%></p>
+                <p><%= oeuvre.get('lastname')%></p>
+                <p><%= oeuvre.get('age')%></p>
+              </div>
+            </div>
+          </a>
+      </div>
+    <% }); %>
+  </div>
+</div>
