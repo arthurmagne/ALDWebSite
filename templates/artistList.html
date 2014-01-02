@@ -1,0 +1,39 @@
+<div class="artist-list">
+  <% _.each(artists, function(artist, cpt) { %>
+      <% if ((cpt % 2) == 0 ) { %>
+        <div class="row featurette">
+          <a href="#/artist/<%= artist.id %>">
+            <div class="col-md-5">
+              <img class="featurette-image img-responsive" src="http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg" alt="Generic placeholder image">
+            </div>
+            <div class="col-md-7">
+              <h2 class="featurette-heading"><%= artist.get('firstname')%> <span class="text-muted"><%= artist.get('lastname')%></span></h2>
+              <p class="lead"><%= artist.get('age')%> avec l'index <%= cpt %></p>
+              <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            </div>
+          </a>
+        </div>
+   
+      <% } else { %> <!-- endif cpt % 2 == 0 -->
+        <div class="row featurette">
+          <a href="#/artist/<%= artist.id %>">
+            <div class="col-md-7">
+              <h2 class="featurette-heading"><%= artist.get('firstname')%> <span class="text-muted"><%= artist.get('lastname')%></span></h2>
+              <p class="lead"><%= artist.get('age')%> avec l'index <%= cpt %></p>
+              <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            </div>
+            <div class="col-md-5">
+              <img class="featurette-image img-responsive" src="http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg" alt="Generic placeholder image">
+            </div>
+          </a>
+        </div>
+      <% } %>
+
+      <hr class="featurette-divider">
+  <% }); %>
+  </div>
+
+
+
+
+

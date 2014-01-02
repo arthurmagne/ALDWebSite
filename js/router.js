@@ -5,13 +5,19 @@ define([
   'backbone',
   'views/oeuvreList',
   'views/addOeuvre',
-  'views/home'
-], function($, _, Backbone, OeuvreListView, AddOeuvreView, HomeView){
+  'views/home',
+  'views/artistList',
+  'views/detailArtist',
+  'views/detailOeuvre'
+], function($, _, Backbone, OeuvreListView, AddOeuvreView, HomeView, ArtistListView, DetailArtistView, DetailOeuvreView){
   var AppRouter = Backbone.Router.extend({
     routes: {
         '': 'home',
         'new': 'addOeuvre',
-        'oeuvres': 'oeuvresList'
+        'oeuvres': 'oeuvresList',
+        'artists': 'artistList',
+        'artist/:id': 'detailArtist',
+        'oeuvre/:id': 'detailOeuvre'
     },
     initialize: function() {
     	$.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
@@ -42,6 +48,25 @@ define([
       oeuvresList = new OeuvreListView();
       oeuvresList.render();
     });
+
+    app_router.on('route:artistList', function() {
+      console.log("route: artistList");
+      artistList = new ArtistListView();
+      artistList.render();
+    });
+
+    app_router.on('route:detailArtist', function(id) {
+      console.log("route: detailArtist");
+      detailArtist = new DetailArtistView();
+      detailArtist.render({id: id});
+    });
+
+    app_router.on('route:detailOeuvre', function(id) {
+      console.log("route: detailOeuvre");
+      detailOeuvre = new DetailOeuvreView();
+      detailOeuvre.render({id: id});
+    });
+
     Backbone.history.start();
   };
   return {

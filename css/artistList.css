@@ -1,0 +1,11 @@
+.row.featurette:hover{
+	opacity: 0.9;
+}
+
+.row.featurette a{
+	color: black;
+}
+
+.artist-list{
+	margin-top: 150px;
+}

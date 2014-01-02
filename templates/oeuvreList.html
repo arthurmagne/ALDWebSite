@@ -3,7 +3,7 @@
      <% _.each(oeuvres, function(oeuvre) { %>
        <div class="block-back">
         <img class="oeuvre-img" src="http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg"/>
-          <a href="#">
+          <a href="#/oeuvre/<%= oeuvre.id %>">
             <div class="block-front">
               <div class="block-info">
                 <p><%= oeuvre.get('firstname')%></p>
@@ -16,3 +16,5 @@
     <% }); %>
   </div>
 </div>
+
+<hr class="featurette-divider">

@@ -5,10 +5,10 @@ define([
   // Using the Require.js text! plugin, we are loaded raw text
   // which will be used as our views primary template
   'text!../../templates/oeuvreList.html',
-  'models/oeuvres'
+  'collections/oeuvres'
 ], function($, _, Backbone, oeuvresListTemplate, Oeuvres){
   var OeuvreList = Backbone.View.extend({
-    el: '.container.marketing',
+    el: '#page',
     render: function () {
       var that = this;
       var oeuvres = new Oeuvres();

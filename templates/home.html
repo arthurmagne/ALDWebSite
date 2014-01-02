@@ -2,7 +2,6 @@
 ================================================== -->
 <!-- Wrap the rest of the page in another container to center all the content. -->
 
-<div class="container marketing">
 
 
    <!-- Four columns of text below the carousel -->
@@ -42,26 +41,30 @@
     <% if (cpt < 3) { %>
       <% if (cpt == 1) { %>
         <div class="row featurette">
-          <div class="col-md-5">
-            <img class="featurette-image img-responsive" src="http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg" alt="Generic placeholder image">
-          </div>
-          <div class="col-md-7">
-            <h2 class="featurette-heading"><%= oeuvre.get('firstname')%> <span class="text-muted"><%= oeuvre.get('lastname')%></span></h2>
-            <p class="lead"><%= oeuvre.get('age')%> avec l'index <%= cpt %></p>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-          </div>
+          <a href="#">
+            <div class="col-md-5">
+              <img class="featurette-image img-responsive" src="http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg" alt="Generic placeholder image">
+            </div>
+            <div class="col-md-7">
+              <h2 class="featurette-heading"><%= oeuvre.get('firstname')%> <span class="text-muted"><%= oeuvre.get('lastname')%></span></h2>
+              <p class="lead"><%= oeuvre.get('age')%> avec l'index <%= cpt %></p>
+              <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            </div>
+          </a>
         </div>
    
       <% } else { %> <!-- endif cpt == 1 -->
         <div class="row featurette">
-          <div class="col-md-7">
-            <h2 class="featurette-heading"><%= oeuvre.get('firstname')%> <span class="text-muted"><%= oeuvre.get('lastname')%></span></h2>
-            <p class="lead"><%= oeuvre.get('age')%> avec l'index <%= cpt %></p>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-          </div>
-          <div class="col-md-5">
-            <img class="featurette-image img-responsive" src="http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg" alt="Generic placeholder image">
-          </div>
+          <a href="#">
+            <div class="col-md-7">
+              <h2 class="featurette-heading"><%= oeuvre.get('firstname')%> <span class="text-muted"><%= oeuvre.get('lastname')%></span></h2>
+              <p class="lead"><%= oeuvre.get('age')%> avec l'index <%= cpt %></p>
+              <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            </div>
+            <div class="col-md-5">
+              <img class="featurette-image img-responsive" src="http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg" alt="Generic placeholder image">
+            </div>
+          </a>
         </div>
       <% } %>
 
@@ -85,11 +88,4 @@
   <!-- /END THE FEATURETTES -->
 
 
-  <!-- FOOTER -->
-  <footer>
-    <p class="pull-right"><a href="#">Back to top</a></p>
-    <p>&copy; 2013 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-  </footer>
-
-</div><!-- /.container -->
 
