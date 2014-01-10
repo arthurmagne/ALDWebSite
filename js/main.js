@@ -5,14 +5,25 @@
 require.config({
   paths: {
     jquery: 'libs/jquery/jquery',
+    bootstrap: '../dist/js/bootstrap.min',
     underscore: 'libs/underscore/underscore',
-    backbone: 'libs/backbone/backbone'
+    backbone: 'libs/backbone/backbone',
+    holder: 'holder'
   },
 
     shim: {
-    	 underscore: {
-	      exports: '_'
-	    },
+        bootstrap: {
+          deps: ['jquery']
+        },
+
+        holder: {
+          deps: ['jquery']
+        },
+      
+    	  underscore: {
+	        exports: '_'
+	      },
+        
         backbone: {
             deps: ['jquery','underscore'],
             exports: 'Backbone'

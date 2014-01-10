@@ -41,7 +41,7 @@
     <% if (cpt < 3) { %>
       <% if (cpt == 1) { %>
         <div class="row featurette">
-          <a href="#">
+          <a href="#/oeuvre/<%= oeuvre.id %>">
             <div class="col-md-5">
               <img class="featurette-image img-responsive" src="http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg" alt="Generic placeholder image">
             </div>
@@ -55,7 +55,7 @@
    
       <% } else { %> <!-- endif cpt == 1 -->
         <div class="row featurette">
-          <a href="#">
+          <a href="#/oeuvre/<%= oeuvre.id %>">
             <div class="col-md-7">
               <h2 class="featurette-heading"><%= oeuvre.get('firstname')%> <span class="text-muted"><%= oeuvre.get('lastname')%></span></h2>
               <p class="lead"><%= oeuvre.get('age')%> avec l'index <%= cpt %></p>

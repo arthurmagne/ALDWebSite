@@ -29,9 +29,11 @@
     <!-- Load the script "js/main.js" as our entry point -->
     <script data-main="js/main" src="js/libs/require/require.js"></script>
   </head>
-<!-- NAVBAR (must be present in each page)
-================================================== -->
+
   <body>
+
+   <!-- NAVBAR (must be present in each page)
+   ================================================== -->
     <div class="navbar-wrapper">
       <div class="container">
 
@@ -48,9 +50,9 @@
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="">Home</a></li>
-                <li><a href="#/artists">Artistes</a></li>
-                <li class="dropdown">
+                <li class="home"><a href="">Home</a></li>
+                <li class="artistList"><a href="#/artists">Artistes</a></li>
+                <li class="oeuvres dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Oeuvres <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li><a href="#">Peinture</a></li>
@@ -60,7 +62,7 @@
                     <li><a href="#/oeuvres">Toutes</a></li>
                   </ul>
                 </li>
-                <li><a href="Collections">Collections</a></li>
+                <li class="collections"><a href="Collections">Collections</a></li>
               </ul>
             </div>
           </div>
@@ -130,11 +132,11 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="dist/js/bootstrap.min.js"></script>
-    <script src="js/holder.js"></script>
-
-
     <script src="js/home.js"></script>
+
+    <!--<script src="js/holder.js"></script>-->
+
+
 
 
   </body>

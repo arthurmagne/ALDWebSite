@@ -1,4 +1,6 @@
 define([
+  'bootstrap',
+  'holder',
   'jquery',
   'underscore',
   'backbone',
@@ -6,7 +8,7 @@ define([
   // which will be used as our views primary template
   'text!../../templates/home.html',
   'collections/oeuvres'
-], function($, _, Backbone, homeTemplate, Oeuvres){
+], function(bootstrap, holder, $, _, Backbone, homeTemplate, Oeuvres){
   var OeuvreList = Backbone.View.extend({
     el: '#page',
     render: function () {

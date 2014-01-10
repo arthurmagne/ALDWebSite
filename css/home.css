@@ -142,6 +142,9 @@ body {
   height: 180px;
 }
 
+.row-detail:hover{
+  opacity: 1 !important;
+}
 
 
 /* RESPONSIVE CSS

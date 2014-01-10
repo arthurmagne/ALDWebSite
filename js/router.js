@@ -67,6 +67,18 @@ define([
       detailOeuvre.render({id: id});
     });
 
+    app_router.bind('all', function(route, router) {
+      if (route != 'route'){
+        var routeName = route.split(':')[1];
+        $('.navbar-wrapper li').removeClass('active');
+        if (routeName == "artistList" || routeName == "collections" || routeName == "home"){
+          $('.navbar-wrapper li.' + routeName).addClass('active');
+        }else{
+          $('.navbar-wrapper li.oeuvres').addClass('active');
+        }
+      }
+    });
+
     Backbone.history.start();
   };
   return {
