@@ -2,6 +2,16 @@
 	margin-top: 150px;
 }
 
+.detail-oeuvre .featurette-heading{
+	margin-top: 40px !important;
+}
+
+
 .oeuvre-name{
 	margin-top: 0 !important;
+}
+
+.edit-btn{
+	float: right;
+	margin-top: -40px;
 }

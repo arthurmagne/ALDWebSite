@@ -1,5 +1,6 @@
 <div class="artist-list">
-  <% _.each(artists, function(artist, cpt) { %>
+  <% _.each(artists, function(artistModel, cpt) { %>
+    <% var artist = artistModel.attributes.artist; %>
       <% if ((cpt % 2) == 0 ) { %>
         <div class="row featurette">
           <a href="#/artist/<%= artist.id %>">
@@ -7,9 +8,14 @@
               <img class="featurette-image img-responsive" src="http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg" alt="Generic placeholder image">
             </div>
             <div class="col-md-7">
-              <h2 class="featurette-heading"><%= artist.get('firstname')%> <span class="text-muted"><%= artist.get('lastname')%></span></h2>
-              <p class="lead"><%= artist.get('age')%> avec l'index <%= cpt %></p>
-              <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+              <% if (artist.name) { %>
+                <% var firstname = artist.name.split(" ")[0]; %>
+                <% var lastname = artist.name.split(" ")[1]; %>
+              <% } %>
+              <h2 class="featurette-heading"><%= firstname %> <span class="text-muted"><%= lastname %></span></h2>
+              <p class="text-muted">Ville: <span class="info"><%= artist.city %></span></p>
+              <p class="text-muted">Date de naissance: <span class="info"><%= artist.birthDate %></span></p>
+              <p class="text-muted">Domaine: <span class="info"><%= artist.workType %></span></p>
             </div>
           </a>
         </div>
@@ -18,9 +24,12 @@
         <div class="row featurette">
           <a href="#/artist/<%= artist.id %>">
             <div class="col-md-7">
-              <h2 class="featurette-heading"><%= artist.get('firstname')%> <span class="text-muted"><%= artist.get('lastname')%></span></h2>
-              <p class="lead"><%= artist.get('age')%> avec l'index <%= cpt %></p>
-              <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+              <% var firstname = artist.name.split(" ")[0]; %>
+              <% var lastname = artist.name.split(" ")[1]; %>
+              <h2 class="featurette-heading"><%= firstname %> <span class="text-muted"><%= lastname %></span></h2>
+              <p class="text-muted">Ville: <span class="info"><%= artist.city %></span></p>
+              <p class="text-muted">Date de naissance: <span class="info"><%= artist.birthDate %></span></p>
+              <p class="text-muted">Domaine: <span class="info"><%= artist.workType %></span></p>
             </div>
             <div class="col-md-5">
               <img class="featurette-image img-responsive" src="http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg" alt="Generic placeholder image">

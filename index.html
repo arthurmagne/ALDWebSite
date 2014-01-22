@@ -51,15 +51,24 @@
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="home"><a href="">Home</a></li>
-                <li class="artistList"><a href="#/artists">Artistes</a></li>
+                <li class="artistList dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">Artistes <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#/artists">Afficher</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#/newArtist">Créer</a></li>
+                  </ul>
+                </li>
                 <li class="oeuvres dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Oeuvres <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Peinture</a></li>
-                    <li><a href="#">Dessin</a></li>
-                    <li><a href="#">Photographie</a></li>
-                    <li><a href="#">Sculture</a></li>
+                    <li><a href="#/oeuvres/type/PAINTING">Peinture</a></li>
+                    <li><a href="#/oeuvres/type/DRAWING">Dessin</a></li>
+                    <li><a href="#/oeuvres/type/PHOTO">Photographie</a></li>
+                    <li><a href="#/oeuvres/type/SCULPTURE">Sculture</a></li>
                     <li><a href="#/oeuvres">Toutes</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#/new">Créer</a></li>
                   </ul>
                 </li>
                 <li class="collections"><a href="Collections">Collections</a></li>
@@ -95,9 +104,9 @@
           <img data-src="holder.js/900x500/auto/#666:#6a6a6a/text:Nouveautés" alt="Nouveautés">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Dernières oeuvres</h1>
-              <p>Retrouvez les dernières oeuvres ajoutées. Tous les types d'oeuvres sont disponibles ici, vous pouvez effectuer une recherche plus précise grâce au bouton 'recherche' du menu principal</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Nouveautés</a></p>
+              <h1>Ajouter un artiste</h1>
+              <p>Créez un artiste rapidement.</p>
+              <p><a class="btn btn-lg btn-primary" href="#/newArtist" role="button">Créer un artiste</a></p>
             </div>
           </div>
         </div>

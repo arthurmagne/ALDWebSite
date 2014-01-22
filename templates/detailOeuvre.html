@@ -1,14 +1,51 @@
+<% var artwork = oeuvre.attributes.artwork; %>
 <div class="detail-oeuvre">
   <div class="row featurette row-detail">
     <div class="col-md-5">
-      <img class="featurette-image img-responsive" src="http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg" alt="Generic placeholder image">
+    <% console.log("photos : "+artwork.photos); %>
+      <img class="featurette-image img-responsive" src="<%= artwork.photos ? artwork.photos.split(',')[0] : 'http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg' %>" alt="Generic placeholder image">
+      <p class="text-muted"><%= artwork.dimensions.x %>cm x <%= artwork.dimensions.y %>cm<% if (artwork.dimensions.z != 0) { %> x <%= artwork.dimensions.z %>cm<% } %></p>
     </div>
     <div class="col-md-7">
-      <h2 class="featurette-heading oeuvre-name"><%= oeuvre.get('firstname')%> <span class="text-muted"><%= oeuvre.get('lastname')%></span></h2>
-      <p class="lead"><%= oeuvre.get('age')%></p>
-      <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+      <% if (artwork.artists.artists) { %>
+        <% var firstname = artwork.artists.artists.name.split(" ")[0]; %>
+        <% var lastname = artwork.artists.artists.name.split(" ")[1]; %>
+      <% } %>
+      <h2 class="featurette-heading"><%= artwork.title %></h2>
+      <p class="lead"><%= firstname %> <span class="text-muted"><%= lastname %></span></p>
+      <p class="text-muted"><% if (artwork.technique) { %><%= artwork.technique.toLowerCase() %><% } %></p>
+      <p class="lead"><%= artwork.description %></p>
+      <p class="exposed"><% if (artwork.exposed) { %>Exposée<% }else{ %>Non exposée<% } %></p>
+      <p class="infos"> Support: <%= artwork.support %></p>
+      <p class="tags">
+
+        <% _.each(artwork.tags.tags, function(tag, cpt) { %>
+          <% if (cpt == 0) { %><span class="lead">Tags: </span><% } %><% if (cpt != 0) { %>, <% } %><%= tag %>
+        <% }); %>
+      </p>
+      <p><a class="btn btn-default edit-btn" href="#/editArtwork/<%= artwork.id %> " role="button">Editer</a></p>
     </div>
   </div>
+  <h4 class="featurette-heading">Commentaires</h4>
+    <% if (artwork.comments.comments && artwork.comments.comments != 0) { %>
+      <% _.each(artwork.comments.comments, function(comment, cpt) { %>
+        <div class="comment-container">
+          <hr>
+          <span class="comment-author"><%= comment.author %></span>
+          <p class="comment-content"><%= comment.content %></p>
+          <p class="comment-date"><%= comment.postDate %></p>
+        </div>
+      <% }); %>
+    <% }else{ %>
+      <p class="text-muted">Aucun commentaire</p>
+    <% } %>
+    <hr>
+    <form class="comment-form hide form-horizontal">
+      <p class="text-center"><textarea name="comment" rows="5" cols="100" placeholder="Commentaire ..."/></p>
+      <p class="text-center"><button type="submit" class="btn btn-primary btn-lg submit-comment">Valider</button></p>
+    </form>
+  </div>
+    <p class="text-center"><a class="btn btn-lg btn-primary add-comment" href="#" role="button">Ajouter un commentaire</a></p>
 </div>
 
   

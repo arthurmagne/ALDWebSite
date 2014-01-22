@@ -2,6 +2,14 @@
 	margin-top: 150px;
 }
 
+.detail-artist .featurette-heading{
+	margin-top: 40px !important;
+}
+
 .artist-name{
 	margin-top: 0 !important;
+}
+
+.detail-artist .row.featurette:hover {
+	opacity: 1 !important;
 }

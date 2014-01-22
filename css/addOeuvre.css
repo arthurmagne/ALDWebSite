@@ -1,3 +1,26 @@
 .add-oeuvre-form{
+	width: 70%;
+	margin: 0 auto;
+	margin-top: 60px;
+}
+
+.title-form{
 	margin-top: 150px;
+}
+
+.add-oeuvre-form input[type=text]{
+	display: inline-block;
+	width: 40%;
+	margin: 5px 15px;
+	margin-left: 0;
+}
+
+.add-oeuvre-form button{
+	width: 20%;
+}
+
+
+.dim input{
+	width: 30px !important;
+	margin: 5px 3px;
 }

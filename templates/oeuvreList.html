@@ -1,19 +1,25 @@
 <div id="wrapper">
   <div class="container">
-     <% _.each(oeuvres, function(oeuvre) { %>
+    <% if (oeuvres.length == 0) { %>
+      <h2 class="text-center text-muted">Aucune oeuvre n'a été trouvée</h2>
+    <% }else{ %>
+     <% _.each(oeuvres, function(oeuvreModel) { %>
+      <% var oeuvre = oeuvreModel.attributes.artwork %>
        <div class="block-back">
         <img class="oeuvre-img" src="http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg"/>
           <a href="#/oeuvre/<%= oeuvre.id %>">
             <div class="block-front">
               <div class="block-info">
-                <p><%= oeuvre.get('firstname')%></p>
-                <p><%= oeuvre.get('lastname')%></p>
-                <p><%= oeuvre.get('age')%></p>
+                <p><strong><%= oeuvre.title %></strong></p>
+                <p><% if (oeuvre.artists.artists) { %><%= oeuvre.artists.artists.name %><% } %></p>
+                <p><% if (oeuvre.artists.artists) { %><%= oeuvre.technique.toLowerCase() %><% } %></p>
+                <p>Description: <%= oeuvre.description %></p>
               </div>
             </div>
           </a>
       </div>
     <% }); %>
+    <% } %>
   </div>
 </div>
 

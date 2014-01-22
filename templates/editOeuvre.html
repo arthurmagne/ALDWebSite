@@ -1,0 +1,86 @@
+<h2 class="title-form"><%= oeuvre ? 'Modifier une oeuvre' : 'Créer une oeuvre' %></h2>
+<% if (oeuvre) { %>
+	<% var artwork = oeuvre.attributes.artwork; %>
+<% } %>
+
+<hr>
+<form class="add-oeuvre-form form-horizontal">
+	<div class="form-group">
+  <input type="text" name="title" placeholder="Titre" value="<%= oeuvre ? artwork.title : '' %>"/>
+  <input type="text" name="photos" placeholder="Photos (url séparées par ',')" value="<%= oeuvre ? artwork.photos : '' %>"/>
+  </div>
+	<div class="form-group">
+  <label>Exposée: </label>
+  <input type="radio" name="exposed" value="true">Oui</input>
+  <input type="radio" name="exposed" value="false" checked="checked">Non</input>
+  </div>
+	<div class="form-group">
+  <label>Date de création: </label>
+  <input type="date" name="date" placeholder="Date"  value="<%= oeuvre ? artwork.creationDate : '' %>"/>
+  </div>
+	<div class="form-group">
+  <label>Description: </label>
+  <textarea name="description" rows="5" cols="50" placeholder="Description..."><%= oeuvre ? artwork.description : '' %></textarea>
+  </div>
+	<div class="form-group">
+  <label>Type: </label>
+  <select name="type">
+		<option value="PAINTING">PAINTING</option>
+		<option value="DRAWING">DRAWING</option>
+		<option value="SCULPTURE">SCULPTURE</option>
+		<option value="PHOTO">PHOTO</option>
+	</select>
+  <label>Technique: </label>
+	<select name="technique">
+		<option value="AQUARELLE">AQUARELLE</option>
+		<option value="GOUACHE">GOUACHE</option>
+		<option value="PEINTURE_HUILE">PEINTURE_HUILE</option>
+		<option value="PEINTURE_EAU">PEINTURE_EAU</option>
+	</select>
+  <label>Support: </label>
+  <select name="support">
+		<option value="TOILE_DE_LIN">TOILE_DE_LIN</option>
+		<option value="COTON">COTON</option>
+		<option value="PAPIER">PAPIER</option>
+		<option value="CARTON">CARTON</option>
+		<option value="BOIS">BOIS</option>
+		<option value="CIRE">CIRE</option>
+		<option value="ARGILE">ARGILE</option>
+		<option value="PLASTILINE">PLASTILINE</option>
+		<option value="CARTON_PATE">CARTON_PATE</option>
+		<option value="PLATRE_ET_STUC">PLATRE_ET_STUC</option>
+		<option value="STAFF">STAFF</option>
+		<option value="CIMENT">CIMENT</option>
+		<option value="PIERRE">PIERRE</option>
+	</select>
+	</div>
+	<div class="dim form-group">
+  <label>Dimensions: </label>
+  <input type="text" name="dimX" placeholder="x"  value="<%= oeuvre ? artwork.dimensions.x : '' %>"/>
+  <input type="text" name="dimY" placeholder="y"  value="<%= oeuvre ? artwork.dimensions.y : '' %>"/>
+  <input type="text" name="dimZ" placeholder="z"  value="<%= oeuvre ? artwork.dimensions.z : '' %>"/>
+  </div>
+	<div class="form-group">
+	<% /*if(oeuvre) { %>
+		<% var tagsTab = artwork.tags; var tags = '';%>
+		<% for (var tag in tagsTab){ %>
+			<% tags += tag + ','; %>
+		<% }; %>
+		<% if (tags.length > 0) { %>
+			<% tags = tags.substring(0,tags.length - 1); %>
+		<% }; %>
+	<% }; */%>
+  <input type="text" name="tags" placeholder="Tags" value="<%= oeuvre ? artwork.tags : '' %>"/>
+  </div>
+ 
+<hr>
+  <p class="text-center"><button type="submit" class="btn btn-primary btn-lg"><%= oeuvre ? 'Modifier' : 'Créer' %></button>
+   <% if(oeuvre) { %>
+  	<input type='hidden' name='id' value="<%= artwork.id %>"/>
+  	<button type="button" class="btn btn-danger btn-lg delete-oeuvre">Supprimer</button>
+  <% }; %>
+  </p>
+</form>
+
+<hr class="featurette-divider">
+

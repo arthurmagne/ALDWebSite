@@ -5,17 +5,16 @@ define([
   // Using the Require.js text! plugin, we are loaded raw text
   // which will be used as our views primary template
   'text!../../templates/artistList.html',
-  'collections/oeuvres'
-], function($, _, Backbone, artistsTemplate, Oeuvres){
+  'collections/artists'
+], function($, _, Backbone, artistsTemplate, Artists){
   var ArtistList = Backbone.View.extend({
     el: '#page',
     render: function () {
       var that = this;
-      // A remplacer par les artistes
-      var oeuvres = new Oeuvres();
+      var artists = new Artists();
       
-      // on récupère les oeuvres en fetchant
-      oeuvres.fetch({
+      // on récupère les artists en fetchant
+      artists.fetch({
         success: function (artists) {
           var template = _.template(artistsTemplate, {artists: artists.models});
           $('#myCarousel').addClass('hide');

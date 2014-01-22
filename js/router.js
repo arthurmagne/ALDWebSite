@@ -4,25 +4,72 @@ define([
   'underscore',
   'backbone',
   'views/oeuvreList',
-  'views/addOeuvre',
+  'views/editOeuvre',
+  'views/editArtist',
   'views/home',
   'views/artistList',
   'views/detailArtist',
-  'views/detailOeuvre'
-], function($, _, Backbone, OeuvreListView, AddOeuvreView, HomeView, ArtistListView, DetailArtistView, DetailOeuvreView){
+  'views/detailOeuvre',
+  'views/oeuvresListByType'
+], function($, _, Backbone, OeuvreListView, EditOeuvreView, EditArtistView, HomeView, ArtistListView, DetailArtistView, DetailOeuvreView, OeuvreListByTypeView){
+  var AppController = Backbone.View.extend({
+    showView: function(options){
+      var closingView = this.view;
+
+      this.view = options.view;
+      console.log("l'id recup dans options : "+options.id);
+      this.view.render({id: options.id});
+      //$(this.view.el).hide();
+      //this.el.append(this.view.el);
+
+      this.openView(this.view);
+      this.closeView(closingView);
+    },
+     openView: function(view){
+
+    },
+
+    closeView: function(view){
+      if (view){
+        view.unbind();
+        view.remove();
+        
+      }
+    }
+  });
   var AppRouter = Backbone.Router.extend({
     routes: {
         '': 'home',
-        'new': 'addOeuvre',
+        'new': 'editOeuvre',
+        'newArtist': 'editArtist',
+        'editArtwork/:id': 'editOeuvre',
         'oeuvres': 'oeuvresList',
+        'oeuvres/type/:type': 'oeuvresListByType',
         'artists': 'artistList',
         'artist/:id': 'detailArtist',
+        'editArtist/:id': 'editArtist',
         'oeuvre/:id': 'detailOeuvre'
     },
     initialize: function() {
     	$.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
-       		 options.url = 'http://backbonejs-beginner.herokuapp.com' + options.url;
-   		 });
+     		 //options.url = 'http://backbonejs-beginner.herokuapp.com' + options.url;
+         options.url = 'http://localhost:8080/rest/museum' + options.url;
+         if (!options.crossDomain) {
+            options.crossDomain = true;
+         };
+         
+        //jqXHR.setRequestHeader('Accept", "application/json');
+
+ 		  });
+      var appController = new AppController();
+      this.appController = appController;
+      /*$.ajaxSetup({
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'origin, x-requested-with, content-type',
+          'Access-Control-Allow-Methods':'PUT, GET, POST, DELETE, OPTIONS'
+        }
+      });*/
     }
   });
 
@@ -37,16 +84,30 @@ define([
       homeView.render();
     });
 
-    app_router.on('route:addOeuvre', function() {
-      console.log("route: addOeuvre");
-      addOeuvre = new AddOeuvreView();
-      addOeuvre.render();
+    app_router.on('route:editOeuvre', function(id) {
+      console.log("route: editOeuvre");
+      editOeuvre = new EditOeuvreView();
+      editOeuvre.render({id: id});
+      //this.appController.showView({view: editOeuvre, id: id});
+
+    });
+
+    app_router.on('route:editArtist', function(id) {
+      console.log("route: editArtist");
+      editArtist = new EditArtistView();
+      editArtist.render({id: id});
     });
 
     app_router.on('route:oeuvresList', function() {
       console.log("route: oeuvresList");
       oeuvresList = new OeuvreListView();
       oeuvresList.render();
+    });
+
+    app_router.on('route:oeuvresListByType', function(type) {
+      console.log("route: oeuvresListByType "+type);
+      oeuvresListByType = new OeuvreListByTypeView();
+      oeuvresListByType.render({type: type});
     });
 
     app_router.on('route:artistList', function() {
@@ -78,6 +139,12 @@ define([
         }
       }
     });
+
+    Backbone.View.prototype.goTo = function (loc) {
+      app_router.navigate(loc, true);
+      console.log("call proto");
+    };
+    console.log("initialize");
 
     Backbone.history.start();
   };

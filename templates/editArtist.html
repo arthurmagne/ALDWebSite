@@ -1,0 +1,46 @@
+<h2 class="title-form"><%= artist ? 'Modifier un artist' : 'Créer un artist' %></h2>
+<% if (artist) { %>
+	<% var artist = artist.attributes.artist; %>
+<% } %>
+
+<hr>
+<form class="add-artist-form form-horizontal">
+	<div class="form-group">
+  <input type="text" name="title" placeholder="Nom" value="<%= artist ? artist.name : '' %>"/>
+  <input type="text" name="photo" placeholder="Photo" value="<%= artist ? artist.photo : '' %>"/>
+  </div>
+	
+	<div class="form-group">
+  <label>Date de naissance: </label>
+  <input type="date" name="date" placeholder="Date"  value="<%= artist ? artist.birthDate : '' %>"/>
+  </div>
+  <div class="form-group">
+  <input type="text" name="city" placeholder="Ville" value="<%= artist ? artist.city : '' %>"/>
+  <input type="text" name="nationality" placeholder="Nationalité" value="<%= artist ? artist.nationality : '' %>"/>
+  </div>
+
+	<div class="form-group">
+  <label>Note: </label>
+  <textarea name="description" rows="5" cols="50" placeholder="Description..."><%= artist ? artist.description : '' %></textarea>
+  </div>
+	<div class="form-group">
+  <label>Type: </label>
+  <select name="type">
+		<option value="PAINTING">PAINTING</option>
+		<option value="DRAWING">DRAWING</option>
+		<option value="SCULPTURE">SCULPTURE</option>
+		<option value="PHOTO">PHOTO</option>
+	</select>
+	</div>
+ 
+<hr>
+  <p class="text-center"><button type="submit" class="btn btn-primary btn-lg"><%= artist ? 'Modifier' : 'Créer' %></button>
+   <% if(artist) { %>
+  	<input type='hidden' name='id' value="<%= artist.id %>"/>
+  	<button type="button" class="btn btn-danger btn-lg delete-artist">Supprimer</button>
+  <% }; %>
+  </p>
+</form>
+
+<hr class="featurette-divider">
+

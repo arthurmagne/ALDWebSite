@@ -1,0 +1,13 @@
+.add-artist-form{
+	width: 35%;
+	margin: 0 auto;
+	margin-top: 60px;
+}
+
+.title-form{
+	margin-top: 150px;
+}
+
+.add-artist-form button{
+	width: 30%;
+}

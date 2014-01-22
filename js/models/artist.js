@@ -6,7 +6,7 @@ define([
   'backbone'    // lib/backbone/backbone
 ], function($, _, Backbone){
 	var Artist = Backbone.Model.extend({
-		urlRoot: '/users'
+		urlRoot: '/artist/'
 	})
   // Above we have passed in jQuery, Underscore and Backbone
   // They will not be accessible in the global scope
