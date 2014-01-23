@@ -9,11 +9,16 @@ define([
 
     initialize: function(options) {
       console.log("init oeuvre");
-      /*if (options)
-        this.requestType = options.requestType;*/
+      if (options.addComment)
+        this.addComment = options.addComment;
 
     },
     urlRoot: function() {
+      console.log("URL root");
+      if (this.addComment){
+        console.log("add comment url");
+        return '/artwork/addComment/';
+      }
       return '/artwork/';
     }
 	})

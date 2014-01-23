@@ -6,7 +6,7 @@
      <% _.each(oeuvres, function(oeuvreModel) { %>
       <% var oeuvre = oeuvreModel.attributes.artwork %>
        <div class="block-back">
-        <img class="oeuvre-img" src="http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg"/>
+        <img class="oeuvre-img" src="<%= oeuvre.photos ? oeuvre.photos.split(',')[0] : 'http://www.weblettres.net/blogs/uploads/p/plumerouge/44668.jpg'%>"/>
           <a href="#/oeuvre/<%= oeuvre.id %>">
             <div class="block-front">
               <div class="block-info">

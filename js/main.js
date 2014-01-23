@@ -8,7 +8,8 @@ require.config({
     bootstrap: '../dist/js/bootstrap.min',
     underscore: 'libs/underscore/underscore',
     backbone: 'libs/backbone/backbone',
-    holder: 'holder'
+    holder: 'holder',
+    lightbox: 'libs/lightbox/lightbox'
   },
 
     shim: {
@@ -23,6 +24,9 @@ require.config({
     	  underscore: {
 	        exports: '_'
 	      },
+        lightbox: {
+          deps: ['jquery']
+        },
         
         backbone: {
             deps: ['jquery','underscore'],

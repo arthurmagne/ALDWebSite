@@ -55,7 +55,7 @@ define([
     saveOeuvre: function (event) {
       console.log("saveOeuvre");
       //var oeuvreDetails = $(event.currentTarget).serializeObject();
-      var form = $(event.currentTarget)
+      var form = $(event.currentTarget);
       var _title = form.find("input[name='title']").val();
       var _photos = form.find("input[name='photos']").val();
       console.log("photos :    dd "+_photos);
@@ -115,8 +115,6 @@ define([
           $('#myCarousel').removeClass('hide');
           Backbone.View.prototype.goTo('/#/');
           that.close();
-          //that.unbind();
-          //that.remove();
 
 
         }
@@ -129,9 +127,6 @@ define([
 
       var oeuvre = new Oeuvre({id: this.id});
       oeuvre.destroy({
-        // headers: {
-        //   "Content-Type": 'application/json'
-        // },
         success: function () {
           console.log("Oeuvre supprimée du serveur avec succès");
           Backbone.history.navigate('/#/', {trigger: true});

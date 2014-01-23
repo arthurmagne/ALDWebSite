@@ -3,8 +3,20 @@
   <div class="row featurette row-detail">
     <div class="col-md-5">
     <% console.log("photos : "+artwork.photos); %>
-      <img class="featurette-image img-responsive" src="<%= artwork.photos ? artwork.photos.split(',')[0] : 'http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg' %>" alt="Generic placeholder image">
-      <p class="text-muted"><%= artwork.dimensions.x %>cm x <%= artwork.dimensions.y %>cm<% if (artwork.dimensions.z != 0) { %> x <%= artwork.dimensions.z %>cm<% } %></p>
+    <% var nbPhotos = 0; %>
+    <% if (artwork.photos) { %>
+    <% var photos = artwork.photos.split(','); %>
+    <% nbPhotos = photos.length; %>
+     <% for (var i = 0; i < photos.length; i++) { %>
+
+      <a href="<%= photos[i] %>" data-lightbox="<%= artwork.id %>" title="<%= artwork.title %>"><img class="featurette-image img-responsive <%= (i>0) ? 'hide' : '' %>" src="<%= photos[i] %>" alt="Generic placeholder image"></a>
+      <% } %>
+    <% }else{ %>
+      <a href="http://www.weblettres.net/blogs/uploads/p/plumerouge/44668.jpg" data-lightbox="<%= artwork.id %>" title="<%= artwork.title %>"><img class="featurette-image img-responsive" src="http://www.weblettres.net/blogs/uploads/p/plumerouge/44668.jpg"></a>
+    <% } %>
+      <p class="text-muted"><%= artwork.dimensions.x %>cm x <%= artwork.dimensions.y %>cm<% if (artwork.dimensions.z != 0) { %> x <%= artwork.dimensions.z %>cm<% } %><span class="nb-photos"><%= nbPhotos %> photo<%= (nbPhotos>1) ? 's' : '' %></span></p>
+      
+    
     </div>
     <div class="col-md-7">
       <% if (artwork.artists.artists) { %>
@@ -41,6 +53,8 @@
     <% } %>
     <hr>
     <form class="comment-form hide form-horizontal">
+
+      <p class="text-center"><input type="text" name="name-comment" placeholder="Auteur"/></p>
       <p class="text-center"><textarea name="comment" rows="5" cols="100" placeholder="Commentaire ..."/></p>
       <p class="text-center"><button type="submit" class="btn btn-primary btn-lg submit-comment">Valider</button></p>
     </form>

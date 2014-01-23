@@ -3,8 +3,9 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'router' // Request router.js
-], function($, _, Backbone, Router){
+  'router',
+  'lightbox'
+], function($, _, Backbone, Router, light){
   var initialize = function(){
     // Pass in our Router module and call it's initialize function
     Router.initialize();

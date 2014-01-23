@@ -3,10 +3,10 @@
     <% var artist = artistModel.attributes.artist; %>
       <% if ((cpt % 2) == 0 ) { %>
         <div class="row featurette">
-          <a href="#/artist/<%= artist.id %>">
             <div class="col-md-5">
-              <img class="featurette-image img-responsive" src="http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg" alt="Generic placeholder image">
+              <a href="<%= artist.photo ? artist.photo : 'http://www.jonathan-menet.fr/blog/wp-content/uploads/2013/07/faces-artiste-Vince-Low-7.jpg' %>" data-lightbox="<%= artist.id %>" title="<%= artist.name %>"><img class="featurette-image img-responsive" src="<%= artist.photo ? artist.photo : 'http://www.jonathan-menet.fr/blog/wp-content/uploads/2013/07/faces-artiste-Vince-Low-7.jpg' %>" alt="Generic placeholder image"></a>
             </div>
+          <a href="#/artist/<%= artist.id %>">
             <div class="col-md-7">
               <% if (artist.name) { %>
                 <% var firstname = artist.name.split(" ")[0]; %>
@@ -31,10 +31,10 @@
               <p class="text-muted">Date de naissance: <span class="info"><%= artist.birthDate %></span></p>
               <p class="text-muted">Domaine: <span class="info"><%= artist.workType %></span></p>
             </div>
-            <div class="col-md-5">
-              <img class="featurette-image img-responsive" src="http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg" alt="Generic placeholder image">
-            </div>
           </a>
+            <div class="col-md-5">
+              <a href="<%= artist.photo ? artist.photo : 'http://www.jonathan-menet.fr/blog/wp-content/uploads/2013/07/faces-artiste-Vince-Low-7.jpg' %>" data-lightbox="<%= artist.id %>" title="<%= artist.name %>"><img class="featurette-image img-responsive" src="<%= artist.photo ? artist.photo : 'http://www.jonathan-menet.fr/blog/wp-content/uploads/2013/07/faces-artiste-Vince-Low-7.jpg' %>" alt="Generic placeholder image"></a>
+            </div>
         </div>
       <% } %>
 

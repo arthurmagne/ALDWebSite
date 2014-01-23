@@ -14,3 +14,7 @@
 	color: black;
 	font-size: medium;
 }
+
+.artist-list .featurette-image{
+	max-height: 80%;
+}

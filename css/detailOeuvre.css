@@ -11,7 +11,11 @@
 	margin-top: 0 !important;
 }
 
-.edit-btn{
+.detail-oeuvre .edit-btn{
 	float: right;
 	margin-top: -40px;
+}
+
+.nb-photos{
+	float: right;
 }

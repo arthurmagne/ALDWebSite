@@ -41,7 +41,7 @@ define([
 
       console.log("saveArtist");
       //var artistDetails = $(event.currentTarget).serializeObject();
-      var form = $(event.currentTarget)
+      var form = $(event.currentTarget);
       var _name = form.find("input[name='title']").val();
       var _city = form.find("input[name='city']").val();
       var _nationality = form.find("input[name='nationality']").val();

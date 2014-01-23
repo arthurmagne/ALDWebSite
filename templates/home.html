@@ -42,10 +42,10 @@
     <% if (cpt < 3) { %>
       <% if (cpt == 1) { %>
         <div class="row featurette">
-          <a href="#/oeuvre/<%= artwork.id %>">
             <div class="col-md-5">
-              <img class="featurette-image img-responsive" src="http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg" alt="Generic placeholder image">
+              <a href="<%= artwork.photos ? artwork.photos.split(',')[0] : 'http://www.weblettres.net/blogs/uploads/p/plumerouge/44668.jpg'%>" data-lightbox="<%= artwork.id %>" title="<%= artwork.title %>"><img class="featurette-image img-responsive" src="<%= artwork.photos ? artwork.photos.split(',')[0] : 'http://www.weblettres.net/blogs/uploads/p/plumerouge/44668.jpg'%>" alt="Generic placeholder image"/></a>
             </div>
+          <a href="#/oeuvre/<%= artwork.id %>">
             <div class="col-md-7">
               <% if (artwork.artists.artists) { %>
                 <% var firstname = artwork.artists.artists.name.split(" ")[0]; %>
@@ -72,10 +72,10 @@
               <p class="text-muted"><% if (artwork.technique) { %><%= artwork.technique.toLowerCase() %><%} %></p>
               <p class="lead"><%= artwork.description %></p>
             </div>
-            <div class="col-md-5">
-              <img class="featurette-image img-responsive" src="http://i988.photobucket.com/albums/af6/arthurmagne/C99D6706-orig_zps8f3692f1.jpg" alt="Generic placeholder image">
-            </div>
           </a>
+            <div class="col-md-5">
+              <a href="<%= artwork.photos ? artwork.photos.split(',')[0] : 'http://www.weblettres.net/blogs/uploads/p/plumerouge/44668.jpg'%>" data-lightbox="<%= artwork.id %>" title="<%= artwork.title %>"><img class="featurette-image img-responsive" src="<%= artwork.photos ? artwork.photos.split(',')[0] : 'http://www.weblettres.net/blogs/uploads/p/plumerouge/44668.jpg'%>" alt="Generic placeholder image"/></a>
+            </div>
         </div>
       <% } %>
 

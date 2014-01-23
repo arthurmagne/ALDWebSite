@@ -31,6 +31,7 @@ define([
         })
       }
     },
+
     addComment: function (event) {
       event.preventDefault();
       console.log("add comment");
@@ -38,17 +39,27 @@ define([
       $('.add-comment').addClass('hide');
       return false;
     },
+
     submitComment: function (event) {
       event.preventDefault();
       console.log("submit comment");
-      var oeuvre = new Oeuvre({id: this.id});
-      oeuvre.save({artwork:{comments: {
-comments: [
-{
-author: "arthur",
-content: "blabla",
-postDate: "2014-01-21T20:40:22.409+01:00"
-}]}}},{
+      var form = $('.comment-form');
+      var _name = form.find("input[name='name-comment']").val();
+      var _date = new Date().toDateString();
+      var _desc = form.find("textarea[name='comment']").val();
+
+      
+      var oeuvre = new Oeuvre({comment: {
+        author: _name,
+        content: _desc,
+        postDate: _date
+        },id: this.id, addComment: true});
+              oeuvre.save({comment: {
+        author: _name,
+        content: _desc,
+        postDate: _date
+        }}
+        ,{
         success: function (oeuvre){
           console.log("Oeuvre push au serveur avec nouveau commentaire avec succès");
           console.log(oeuvre);

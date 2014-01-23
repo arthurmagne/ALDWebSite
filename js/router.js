@@ -134,6 +134,8 @@ define([
         $('.navbar-wrapper li').removeClass('active');
         if (routeName == "artistList" || routeName == "collections" || routeName == "home"){
           $('.navbar-wrapper li.' + routeName).addClass('active');
+        }else if (routeName == "editArtist"){
+          $('.navbar-wrapper li.artistList').addClass('active');
         }else{
           $('.navbar-wrapper li.oeuvres').addClass('active');
         }
