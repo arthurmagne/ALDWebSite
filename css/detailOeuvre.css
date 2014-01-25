@@ -2,6 +2,14 @@
 	margin-top: 150px;
 }
 
+.detail-oeuvre a:hover{
+	text-decoration: none;
+}
+
+.detail-oeuvre a:hover p{
+	opacity: 0.8
+}
+
 .detail-oeuvre .featurette-heading{
 	margin-top: 40px !important;
 }

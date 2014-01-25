@@ -19,12 +19,15 @@
     
     </div>
     <div class="col-md-7">
-      <% if (artwork.artists.artists) { %>
-        <% var firstname = artwork.artists.artists.name.split(" ")[0]; %>
-        <% var lastname = artwork.artists.artists.name.split(" ")[1]; %>
+      <% if (artwork.artistName) { %>
+        <% var firstname = artwork.artistName.split(" ")[0]; %>
+        <% var lastname = artwork.artistName.split(" ")[1]; %>
       <% } %>
       <h2 class="featurette-heading"><%= artwork.title %></h2>
-      <p class="lead"><%= firstname %> <span class="text-muted"><%= lastname %></span></p>
+      <a href="#/artist/byName/<%= artwork.artistName %>"><p class="lead"><%= firstname %> <span class="text-muted"><%= lastname %></span></p></a>
+      <% var date = new Date(artwork.creationDate).toDateString(); %>
+      <p class="lead"><%= date %></span></p>
+
       <p class="text-muted"><% if (artwork.technique) { %><%= artwork.technique.toLowerCase() %><% } %></p>
       <p class="lead"><%= artwork.description %></p>
       <p class="exposed"><% if (artwork.exposed) { %>Exposée<% }else{ %>Non exposée<% } %></p>
@@ -32,7 +35,7 @@
       <p class="tags">
 
         <% _.each(artwork.tags.tags, function(tag, cpt) { %>
-          <% if (cpt == 0) { %><span class="lead">Tags: </span><% } %><% if (cpt != 0) { %>, <% } %><%= tag %>
+          <% if (cpt == 0) { %><span class="lead">Tags: </span><% } %><% if (cpt != 0) { %>, <% } %><a href="#/oeuvre/byTag/<%= tag %>"><%= tag %></a>
         <% }); %>
       </p>
       <p><a class="btn btn-default edit-btn" href="#/editArtwork/<%= artwork.id %> " role="button">Editer</a></p>
@@ -45,7 +48,8 @@
           <hr>
           <span class="comment-author"><%= comment.author %></span>
           <p class="comment-content"><%= comment.content %></p>
-          <p class="comment-date"><%= comment.postDate %></p>
+          <% var date = new Date(comment.postDate).toDateString(); %>
+          <p class="comment-date"><%= date %></p>
         </div>
       <% }); %>
     <% }else{ %>

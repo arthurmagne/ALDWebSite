@@ -1,3 +1,23 @@
+
+<div class="row img-heading hide" id="painting-list">
+  <div class="col-lg-3">
+    <img class="img-circle" src="http://www.stages-dessin-peinture.fr/wp-content/uploads/2013/03/AQUARELLE-10.jpg" alt="Generic placeholder image">
+    <p><a class="btn btn-default" href="#/oeuvres/technique/AQUARELLE" role="button">Aquarelle &raquo;</a></p>
+  </div><!-- /.col-lg-3 -->
+  <div class="col-lg-3">
+    <img class="img-circle" src="http://img.over-blog.com/600x435/0/38/72/96/gouache/2006-2007/pounte-du-raz-a-la-gouache.-avril-2007-004-1-1-.jpg" alt="Generic placeholder image">
+    <p><a class="btn btn-default" href="#/oeuvres/technique/GOUACHE" role="button">Gouache &raquo;</a></p>
+  </div><!-- /.col-lg-3 -->
+  <div class="col-lg-3">
+    <img class="img-circle" src="http://www.galerie-creation.com/images/upload/1327/1a50a7928f0fd0a11fc79e5c0c91045achampdecoquelicots.jpg" alt="Generic placeholder image">
+    <p><a class="btn btn-default" href="#/oeuvres/technique/PEINTURE_HUILE" role="button">Peinture à l'huile &raquo;</a></p>
+  </div><!-- /.col-lg-3 -->
+   <div class="col-lg-3">
+    <img class="img-circle" src="http://www.jeuxvideo.org/wp-content/uploads/2012/03/il_fullxfull.311932025-606x462.jpg" alt="Generic placeholder image">
+    <p><a class="btn btn-default" href="#/oeuvres/technique/PEINTURE_EAU" role="button">Peinture à l'eau &raquo;</a></p>
+  </div><!-- /.col-lg-3 -->
+</div><!-- /.row -->
+
 <div id="wrapper">
   <div class="container">
     <% if (oeuvres.length == 0) { %>
@@ -11,8 +31,8 @@
             <div class="block-front">
               <div class="block-info">
                 <p><strong><%= oeuvre.title %></strong></p>
-                <p><% if (oeuvre.artists.artists) { %><%= oeuvre.artists.artists.name %><% } %></p>
-                <p><% if (oeuvre.artists.artists) { %><%= oeuvre.technique.toLowerCase() %><% } %></p>
+                <p><% if (oeuvre.artistName != "unknown") { %><%= oeuvre.artistName %><% } %></p>
+                <p><%= oeuvre.technique.toLowerCase() %></p>
                 <p>Description: <%= oeuvre.description %></p>
               </div>
             </div>

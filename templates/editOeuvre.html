@@ -1,3 +1,5 @@
+<% if (oeuvre == "undefined") { var oeuvre = null; } %>
+<% if (artists == "undefined") { var artists = null; } %>
 <h2 class="title-form"><%= oeuvre ? 'Modifier une oeuvre' : 'Créer une oeuvre' %></h2>
 <% if (oeuvre) { %>
 	<% var artwork = oeuvre.attributes.artwork; %>
@@ -9,6 +11,19 @@
   <input type="text" name="title" placeholder="Titre" value="<%= oeuvre ? artwork.title : '' %>"/>
   <input type="text" name="photos" placeholder="Photos (url séparées par ',')" value="<%= oeuvre ? artwork.photos : '' %>"/>
   </div>
+  <% if (artists != null) { %> <!-- Création -->
+	  <div class="form-group">
+	  <label>Artiste: </label>
+		<select name="artist">
+		<% _.each(artists, function(artistModel, cpt) { %>
+			<% console.log(artistModel); %>
+	    	<% var artist = artistModel.attributes.artist; %>		
+			<option value="<%= artist.name %>"><%= artist.name %></option>
+		<% }); %>
+		</select>  
+     	<a class="btn btn-default add-artist-btn" href="#/newArtist" role="button">Ajouter un artiste</a>
+		</div>
+	<% } %>
 	<div class="form-group">
   <label>Exposée: </label>
   <input type="radio" name="exposed" value="true">Oui</input>
@@ -61,16 +76,18 @@
   <input type="text" name="dimZ" placeholder="z"  value="<%= oeuvre ? artwork.dimensions.z : '' %>"/>
   </div>
 	<div class="form-group">
-	<% /*if(oeuvre) { %>
-		<% var tagsTab = artwork.tags; var tags = '';%>
-		<% for (var tag in tagsTab){ %>
-			<% tags += tag + ','; %>
-		<% }; %>
-		<% if (tags.length > 0) { %>
-			<% tags = tags.substring(0,tags.length - 1); %>
-		<% }; %>
-	<% }; */%>
-  <input type="text" name="tags" placeholder="Tags" value="<%= oeuvre ? artwork.tags : '' %>"/>
+	<% if(oeuvre) { %>
+		<% var tags = ''; %>
+		<% if (artwork.tags) { %>
+			<% _.each(artwork.tags.tags, function(tag, cpt) { %>
+		          <% if (cpt != 0) { %>
+		          	<% tags += ','; %>
+		          <% } %>
+		          <% tags += tag; %>
+		    <% }); %>
+		<% } %>
+	<% } %>
+  <input type="text" name="tags" placeholder="Tags" value="<%= oeuvre ? tags : '' %>"/>
   </div>
  
 <hr>

@@ -46,6 +46,14 @@
   z-index: 2;
 }
 
+#painting-list{
+  margin-top: 150px;
+  margin-bottom: -100px;
+}
+
+#painting-list .btn.btn-default{
+  margin-top: 20px;
+}
 
 
 

@@ -9,9 +9,8 @@ define([
   'views/home',
   'views/artistList',
   'views/detailArtist',
-  'views/detailOeuvre',
-  'views/oeuvresListByType'
-], function($, _, Backbone, OeuvreListView, EditOeuvreView, EditArtistView, HomeView, ArtistListView, DetailArtistView, DetailOeuvreView, OeuvreListByTypeView){
+  'views/detailOeuvre'
+  ], function($, _, Backbone, OeuvreListView, EditOeuvreView, EditArtistView, HomeView, ArtistListView, DetailArtistView, DetailOeuvreView){
   var AppController = Backbone.View.extend({
     showView: function(options){
       var closingView = this.view;
@@ -47,8 +46,14 @@ define([
         'oeuvres/type/:type': 'oeuvresListByType',
         'artists': 'artistList',
         'artist/:id': 'detailArtist',
+        'artist/byName/:name': 'detailArtistByName',
         'editArtist/:id': 'editArtist',
-        'oeuvre/:id': 'detailOeuvre'
+        'oeuvre/:id': 'detailOeuvre',
+        'oeuvre/byArtist/:id': 'oeuvreListByArtist',
+        'oeuvre/byArtistName/:name': 'oeuvreListByArtistName',
+        'oeuvre/byTag/:tag': 'oeuvreListByTag',
+        'oeuvres/technique/:type': 'oeuvresListByTechnique'
+
     },
     initialize: function() {
     	$.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
@@ -106,8 +111,32 @@ define([
 
     app_router.on('route:oeuvresListByType', function(type) {
       console.log("route: oeuvresListByType "+type);
-      oeuvresListByType = new OeuvreListByTypeView();
+      oeuvresListByType = new OeuvreListView();
       oeuvresListByType.render({type: type});
+    });
+
+    app_router.on('route:oeuvresListByTechnique', function(technique) {
+      console.log("route: oeuvresListByTechnique "+technique);
+      oeuvresListByTechnique = new OeuvreListView();
+      oeuvresListByTechnique.render({technique: technique});
+    });
+
+    app_router.on('route:oeuvreListByArtist', function(id) {
+      console.log("route: oeuvreListByArtist "+id);
+      oeuvreListByArtist = new OeuvreListView();
+      oeuvreListByArtist.render({id: id});
+    });
+
+    app_router.on('route:oeuvreListByArtistName', function(name) {
+      console.log("route: oeuvreListByArtistName "+name);
+      oeuvreListByArtistName = new OeuvreListView();
+      oeuvreListByArtistName.render({name: name});
+    });
+
+    app_router.on('route:oeuvreListByTag', function(tag) {
+      console.log("route: oeuvreListByTag "+tag);
+      oeuvreListByTag = new OeuvreListView();
+      oeuvreListByTag.render({tag: tag});
     });
 
     app_router.on('route:artistList', function() {
@@ -120,6 +149,12 @@ define([
       console.log("route: detailArtist");
       detailArtist = new DetailArtistView();
       detailArtist.render({id: id});
+    });
+
+    app_router.on('route:detailArtistByName', function(name) {
+      console.log("route: detailArtistByName");
+      detailArtistByName = new DetailArtistView();
+      detailArtistByName.render({name: name});
     });
 
     app_router.on('route:detailOeuvre', function(id) {

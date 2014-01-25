@@ -82,12 +82,17 @@ define([
         success: function (artist){
           console.log("Artist push au serveur avec succès");
           console.log(artist);
-          //Backbone.history.navigate('/#/', {trigger: true});
-          $('#myCarousel').removeClass('hide');
-          Backbone.View.prototype.goTo('/#/');
-          that.close();
-          //that.unbind();
-          //that.remove();
+          $(that.el).empty();
+          if (that.edit == true){
+            $(that.el).html("<h2 class='text-center text-muted add-feedback'>Artiste modifié avec succès</h2><hr>");
+          }else{
+              $(that.el).html("<h2 class='text-center text-muted add-feedback'>Artiste ajouté avec succès</h2><hr>");
+          }
+          setTimeout(function(){
+            $('#myCarousel').removeClass('hide');
+            Backbone.View.prototype.goTo('/#/');
+            that.close();
+          },2000);
         }
       });
       return false;
@@ -99,11 +104,13 @@ define([
       artist.destroy({
         success: function () {
           console.log("Artist supprimée du serveur avec succès");
-          //Backbone.history.navigate('/#/', {trigger: true});
-          $('#myCarousel').removeClass('hide');
-          Backbone.View.prototype.goTo('/#/');
-          that.close();
-
+            $(that.el).empty();
+            $(that.el).html("<h2 class='text-center text-muted add-feedback'>Artiste supprimé avec succès</h2><hr>");
+            setTimeout(function(){
+              $('#myCarousel').removeClass('hide');
+              Backbone.View.prototype.goTo('/#/');
+              that.close();
+            },2000);
         }
       })
       return false;

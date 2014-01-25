@@ -10,10 +10,10 @@ define([
   var DetailArtist = Backbone.View.extend({
     el: '#page',
     render: function (options) {
-      if (!options.id){
+      if (!options.id && !options.name){
           $('#myCarousel').addClass('hide');
           this.$el.html("L'url ne contient pas d'id");
-      }else{
+      }else if(options.id){
         var that = this;
         var artist = new Artist({id: options.id});
         // on récupère l'artiste depuis le serveur
@@ -23,7 +23,18 @@ define([
             $('#myCarousel').addClass('hide');
             that.$el.html(template);
           }
-        })
+        });
+      }else if(options.name){
+        var that = this;
+        var artist = new Artist({name: options.name});
+        // on récupère l'artiste depuis le serveur
+        artist.fetch({
+          success: function (artist) {
+            var template = _.template(detailArtistTemplate, {artist: artist});
+            $('#myCarousel').addClass('hide');
+            that.$el.html(template);
+          }
+        });
       }
     }
   });

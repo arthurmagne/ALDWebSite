@@ -47,7 +47,8 @@ define([
       var _name = form.find("input[name='name-comment']").val();
       var _date = new Date().toDateString();
       var _desc = form.find("textarea[name='comment']").val();
-
+      var _id = this.id;
+      var that = this;
       
       var oeuvre = new Oeuvre({comment: {
         author: _name,
@@ -63,11 +64,16 @@ define([
         success: function (oeuvre){
           console.log("Oeuvre push au serveur avec nouveau commentaire avec succès");
           console.log(oeuvre);
-          Backbone.history.navigate('/#/', {trigger: true});
+          Backbone.View.prototype.goTo('/#/');
           $('#myCarousel').removeClass('hide');
+          that.close();
 
         }});
       return false;
+    },
+    close: function(){
+      $(this.el).unbind();
+      $(this.el).empty();
     }
 
   });

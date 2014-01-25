@@ -12,6 +12,7 @@ define([
   var OeuvreList = Backbone.View.extend({
     el: '#page',
     render: function () {
+      $('#myCarousel').removeClass('hide');
       var that = this;
       var oeuvres = new Oeuvres();
       

@@ -6,8 +6,9 @@ define([
   // which will be used as our views primary template
   'text!../../templates/editOeuvre.html',
   'models/oeuvre',
-  '../router'
-], function($, _, Backbone, addOeuvreTemplate, Oeuvre, router){
+  '../router',
+  'collections/artists'
+], function($, _, Backbone, addOeuvreTemplate, Oeuvre, router, Artists){
   $.fn.serializeObject = function() {
       var o = {};
       var a = this.serializeArray();
@@ -32,25 +33,39 @@ define([
     },
     render: function (options) {
       var that = this;
-      if (options.id){
-        this.edit = true;
-        this.id = options.id;
-        console.log("on a un id");
-        this.oeuvre = new Oeuvre({id: options.id});
-        // on récupère les oeuvres en fetchant GET request
-        this.oeuvre.fetch({
-          success: function (oeuvre) {
-            var template = _.template(addOeuvreTemplate, {oeuvre: oeuvre});
+      var artistsCollection = new Artists();
+      var artistList;
+
+      artistsCollection.fetch({
+        success: function (artists) {
+          that.artistList = artists.models;
+          console.log("artists fetch "+that.artistList);
+          if (options.id){
+            that.edit = true;
+            that.id = options.id;
+            console.log("on a un id");
+            // on récupère la liste des artistes
+            
+
+            that.oeuvre = new Oeuvre({id: options.id});
+            // on récupère les oeuvres en fetchant GET request
+            that.oeuvre.fetch({
+              success: function (oeuvre) {
+                var template = _.template(addOeuvreTemplate, {oeuvre: oeuvre});
+                $('#myCarousel').addClass('hide');
+                that.$el.html(template);
+              }
+            });
+          }else{
+            console.log("pas did");
+            console.log("artistList : "+that.artistList);
+            var template = _.template(addOeuvreTemplate, {artists: that.artistList});
             $('#myCarousel').addClass('hide');
             that.$el.html(template);
           }
-        });
-      }else{
-        console.log("pas did");
-        var template = _.template(addOeuvreTemplate, {oeuvre: null});
-        $('#myCarousel').addClass('hide');
-        that.$el.html(template);
-      }
+        }
+      });
+      
     },
     saveOeuvre: function (event) {
       console.log("saveOeuvre");
@@ -70,6 +85,7 @@ define([
       var _dimZ = form.find("input[name='dimZ']").val();
       var _tags = form.find("input[name='tags']").val();
       var _id;
+
       if (this.edit == true){
         _id = parseInt(form.find("input[name='id']").val());
         console.log("id pour modif "+ _id);
@@ -78,12 +94,16 @@ define([
 
         _id = 'undefined';
       }
-      that = this;
+      var that = this;
 
-      var _tagsTab = JSON.stringify(_tags.split(','));
+      var artist = form.find("select[name='artist'] option:selected").val();
+      console.log("artist : " + artist);
 
+      var _tagsTab = _tags.split(',');
+      console.log(_tagsTab);
       var oeuvreDetailsVar = {
         artwork: {
+          artistName: artist,
           creationDate: _date,
           description: _desc,
           dimensions: {
@@ -105,18 +125,28 @@ define([
       };
 
       console.log(oeuvreDetailsVar);
-      var oeuvre = new Oeuvre({artwork: oeuvreDetailsVar, id: _id});
-      that = this;
+      var oeuvre;
+      if (_id == "undefined"){
+        oeuvre = new Oeuvre({artwork: oeuvreDetailsVar});
+      }else{
+        oeuvre = new Oeuvre({artwork: oeuvreDetailsVar, id: _id});
+      }
       oeuvre.save(oeuvreDetailsVar ,{
         wait: true,
         success: function (oeuvre){
           console.log("Oeuvre push au serveur avec succès");
           console.log(oeuvre);
-          $('#myCarousel').removeClass('hide');
-          Backbone.View.prototype.goTo('/#/');
-          that.close();
-
-
+          $(that.el).empty();
+          if (that.edit == true){
+            $(that.el).html("<h2 class='text-center text-muted add-feedback'>Oeuvre modifiée avec succès</h2><hr>");
+          }else{
+            $(that.el).html("<h2 class='text-center text-muted add-feedback'>Oeuvre ajoutée avec succès</h2><hr>");
+          }
+          setTimeout(function(){
+            $('#myCarousel').removeClass('hide');
+            Backbone.View.prototype.goTo('/#/');
+            that.close();
+          },2000);
         }
       });
       return false;
@@ -124,17 +154,21 @@ define([
 
     deleteOeuvre: function (event) {
       console.log("deleteOeuvre");
+      var that = this;
 
       var oeuvre = new Oeuvre({id: this.id});
       oeuvre.destroy({
         success: function () {
           console.log("Oeuvre supprimée du serveur avec succès");
-          Backbone.history.navigate('/#/', {trigger: true});
-          $('#myCarousel').removeClass('hide');
-          Backbone.View.prototype.goTo('/#/');
-          that.close();
+          $(that.el).empty();
+          $(that.el).html("<h2 class='text-center text-muted add-feedback'>Oeuvre supprimée avec succès</h2><hr>");
+          setTimeout(function(){
+            $('#myCarousel').removeClass('hide');
+            Backbone.View.prototype.goTo('/#/');
+            that.close();
+          },2000);
         }
-      })
+      });
       return false;
     },
     close: function(){
