@@ -9,8 +9,9 @@ define([
   'views/home',
   'views/artistList',
   'views/detailArtist',
-  'views/detailOeuvre'
-  ], function($, _, Backbone, OeuvreListView, EditOeuvreView, EditArtistView, HomeView, ArtistListView, DetailArtistView, DetailOeuvreView){
+  'views/detailOeuvre',
+  'views/search'
+  ], function($, _, Backbone, OeuvreListView, EditOeuvreView, EditArtistView, HomeView, ArtistListView, DetailArtistView, DetailOeuvreView, SearchView){
   var AppController = Backbone.View.extend({
     showView: function(options){
       var closingView = this.view;
@@ -40,6 +41,7 @@ define([
     routes: {
         '': 'home',
         'new': 'editOeuvre',
+        'search': 'search',
         'newArtist': 'editArtist',
         'editArtwork/:id': 'editOeuvre',
         'oeuvres': 'oeuvresList',
@@ -47,12 +49,19 @@ define([
         'artists': 'artistList',
         'artist/:id': 'detailArtist',
         'artist/byName/:name': 'detailArtistByName',
+        'artists/byName/:name': 'artistListByName',
+        'artists/represented': 'artistRepresentedList',
+        'artists/byCity/:city': 'artistListByCity',
+        'artists/byNationality/:nationality': 'artistListByNationality',
         'editArtist/:id': 'editArtist',
         'oeuvre/:id': 'detailOeuvre',
         'oeuvre/byArtist/:id': 'oeuvreListByArtist',
+        'oeuvre/byName/:name': 'oeuvreListByName',
+        'oeuvres/represented': 'oeuvreRepresentedList',
         'oeuvre/byArtistName/:name': 'oeuvreListByArtistName',
         'oeuvre/byTag/:tag': 'oeuvreListByTag',
-        'oeuvres/technique/:type': 'oeuvresListByTechnique'
+        'oeuvres/technique/:technique': 'oeuvresListByTechnique',
+        'oeuvres/support/:support': 'oeuvresListBySupport'
 
     },
     initialize: function() {
@@ -89,6 +98,12 @@ define([
       homeView.render();
     });
 
+    app_router.on('route:search', function() {
+      console.log("route: search");
+      searchView = new SearchView();
+      searchView.render();
+    });
+
     app_router.on('route:editOeuvre', function(id) {
       console.log("route: editOeuvre");
       editOeuvre = new EditOeuvreView();
@@ -121,10 +136,22 @@ define([
       oeuvresListByTechnique.render({technique: technique});
     });
 
+    app_router.on('route:oeuvresListBySupport', function(support) {
+      console.log("route: oeuvresListBySupport "+support);
+      oeuvresListBySupport = new OeuvreListView();
+      oeuvresListBySupport.render({support: support});
+    });
+
     app_router.on('route:oeuvreListByArtist', function(id) {
       console.log("route: oeuvreListByArtist "+id);
       oeuvreListByArtist = new OeuvreListView();
       oeuvreListByArtist.render({id: id});
+    });
+
+    app_router.on('route:oeuvreListByName', function(name) {
+      console.log("route: oeuvreListByName "+name);
+      oeuvreListByName = new OeuvreListView();
+      oeuvreListByName.render({oeuvreName: name});
     });
 
     app_router.on('route:oeuvreListByArtistName', function(name) {
@@ -139,10 +166,22 @@ define([
       oeuvreListByTag.render({tag: tag});
     });
 
+    app_router.on('route:oeuvreRepresentedList', function() {
+      console.log("route: oeuvreRepresentedList ");
+      oeuvreRepresentedList = new OeuvreListView();
+      oeuvreRepresentedList.render({bool: true});
+    });
+
     app_router.on('route:artistList', function() {
       console.log("route: artistList");
       artistList = new ArtistListView();
       artistList.render();
+    });
+
+    app_router.on('route:artistRepresentedList', function() {
+      console.log("route: artistRepresentedList");
+      artistRepresentedList = new ArtistListView();
+      artistRepresentedList.render({bool: true});
     });
 
     app_router.on('route:detailArtist', function(id) {
@@ -155,6 +194,24 @@ define([
       console.log("route: detailArtistByName");
       detailArtistByName = new DetailArtistView();
       detailArtistByName.render({name: name});
+    });
+
+    app_router.on('route:artistListByCity', function(city) {
+      console.log("route: artistListByCity");
+      artistListByCity = new ArtistListView();
+      artistListByCity.render({city: city});
+    });
+
+    app_router.on('route:artistListByName', function(name) {
+      console.log("route: artistListByName");
+      artistListByName = new ArtistListView();
+      artistListByName.render({name: name});
+    });
+
+    app_router.on('route:artistListByNationality', function(nationality) {
+      console.log("route: artistListByNationality");
+      artistListByNationality = new ArtistListView();
+      artistListByNationality.render({nationality: nationality});
     });
 
     app_router.on('route:detailOeuvre', function(id) {
@@ -171,6 +228,8 @@ define([
           $('.navbar-wrapper li.' + routeName).addClass('active');
         }else if (routeName == "editArtist"){
           $('.navbar-wrapper li.artistList').addClass('active');
+        }else if (routeName == "search"){
+          $('.navbar-wrapper li.recherche').addClass('active');
         }else{
           $('.navbar-wrapper li.oeuvres').addClass('active');
         }

@@ -71,9 +71,86 @@
                     <li><a href="#/new">Créer</a></li>
                   </ul>
                 </li>
-                <li class="recherche"><a href="#">Recherche</a></li>
+                <li class="collection"><a href="#/oeuvres/represented">Collection</a></li>
+                <li class="recherche"><a href="#/search">Recherche</a></li>
               </ul>
             </div>
+          </div>
+          <div class="search-form-container" id="search-form">
+            <form class="search-form form-horizontal">
+
+              <div class="form-group">
+                <h3>Artiste</h3>
+                <div class="form-group">
+                <input type="radio" name="selection" value="nom" checked/>
+                <input type="text" name="title" placeholder="Nom" class="form-control"/>
+                <input type="radio" name="selection" value="ville"/>
+                <input type="text" name="city" placeholder="Ville"  class="form-control"/>
+                <input type="radio" name="selection" value="nationalite"/>
+                <input type="text" name="nationality" placeholder="Nationalité" class="form-control"/>
+                <input type="radio" name="selection" value="represented-artist"/>
+                <label>Exposé</label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <h3 class="oeuvre">Oeuvre</h3>
+                <div class="form-group">
+                <input type="radio" name="selection" value="type"/>
+                <label>Type: </label>
+                <select name="type" class="form-control">
+                  <option value="PAINTING">PAINTING</option>
+                  <option value="DRAWING">DRAWING</option>
+                  <option value="SCULPTURE">SCULPTURE</option>
+                  <option value="PHOTO">PHOTO</option>
+                </select>
+
+                <input type="radio" name="selection" value="technique"/>
+                <label>Technique: </label>
+                <select name="technique" class="form-control">
+                  <option value="AQUARELLE">AQUARELLE</option>
+                  <option value="GOUACHE">GOUACHE</option>
+                  <option value="PEINTURE_HUILE">PEINTURE_HUILE</option>
+                  <option value="PEINTURE_EAU">PEINTURE_EAU</option>
+                </select>
+
+                <input type="radio" name="selection" value="support"/>
+                <label>Support: </label>
+                <select name="support" class="form-control">
+                  <option value="TOILE_DE_LIN">TOILE_DE_LIN</option>
+                  <option value="COTON">COTON</option>
+                  <option value="PAPIER">PAPIER</option>
+                  <option value="CARTON">CARTON</option>
+                  <option value="BOIS">BOIS</option>
+                  <option value="CIRE">CIRE</option>
+                  <option value="ARGILE">ARGILE</option>
+                  <option value="PLASTILINE">PLASTILINE</option>
+                  <option value="CARTON_PATE">CARTON_PATE</option>
+                  <option value="PLATRE_ET_STUC">PLATRE_ET_STUC</option>
+                  <option value="STAFF">STAFF</option>
+                  <option value="CIMENT">CIMENT</option>
+                  <option value="PIERRE">PIERRE</option>
+                </select>
+                </div>
+
+                <div class="form-group">
+                  <input type="radio" name="selection" value="artist"/>
+                  <input type="text" name="by-artist-name" placeholder="Nom de l'artiste" class="form-control"/>
+
+                  <input type="radio" name="selection" value="oeuvre-name"/>
+                  <input type="text" name="by-name" placeholder="Nom de l'oeuvre" class="form-control"/>
+
+                  <input type="radio" name="selection" value="tag"/>
+                  <input type="text" name="tag" placeholder="Tag" class="form-control"/>
+                  <input type="radio" name="selection" value="represented"/>
+                  <label>Exposée</label>
+                </div>
+              </div>
+             
+              <p class="text-center"><button type="submit" class="btn btn-default btn-lg">Valider</button>
+               
+              </p>
+            </form>
           </div>
         </div>
 

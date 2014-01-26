@@ -7,11 +7,15 @@ define([
 ], function($, _, Backbone){
 	var Oeuvres = Backbone.Collection.extend({
     initialize: function(options) {
+
       if (options){
         this.type = options.type;
         this.name = options.name;
+        this.oeuvreName = options.oeuvreName;
         this.tag = options.tag;
         this.technique = options.technique;
+        this.support = options.support;
+        this.bool = options.bool;
       }
     },
     url: function() {
@@ -23,6 +27,12 @@ define([
         return '/artwork/get/byTag/' + this.tag;       
       }else if (this.technique){
         return '/artwork/get/byTechnique/' + this.technique;       
+      }else if (this.support){
+        return '/artwork/get/bySupport/' + this.support;       
+      }else if (this.bool){
+        return '/artwork/represented';       
+      }else if (this.oeuvreName){
+        return '/artwork/get/byName/' + this.oeuvreName;       
       }
       return '/artwork/get/all';
 

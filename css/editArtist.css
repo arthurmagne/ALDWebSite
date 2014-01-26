@@ -1,5 +1,5 @@
 .add-artist-form{
-	width: 35%;
+	width: 70%;
 	margin: 0 auto;
 	margin-top: 60px;
 }
@@ -9,5 +9,9 @@
 }
 
 .add-artist-form button{
-	width: 30%;
+	width: 20%;
+}
+
+.add-artist-form input[type=text]{
+	margin: 5px 0;
 }

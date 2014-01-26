@@ -9,6 +9,16 @@ $( document ).ready(function() {
 	    }
 	});
 
+	$(".recherche").on("click", function(event) {
+		// event.preventDefault();
+		// event.stopPropagation();
+		$(".navbar-container").toggleClass("show");
+		$(".search-form-container").toggleClass("show");
+		setTimeout(function() {
+			$(".search-form-container").toggleClass("disp");
+		}, 500);
+	});
+
 
 });
 

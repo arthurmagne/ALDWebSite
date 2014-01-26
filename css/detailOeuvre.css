@@ -27,3 +27,7 @@
 .nb-photos{
 	float: right;
 }
+
+.detail-oeuvre .auteur{
+	width: 20%;
+}

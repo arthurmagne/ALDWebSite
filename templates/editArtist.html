@@ -6,26 +6,26 @@
 <hr>
 <form class="add-artist-form form-horizontal">
 	<div class="form-group">
-  <input type="text" name="title" placeholder="Nom" value="<%= artist ? artist.name : '' %>"/>
-  <input type="text" name="photo" placeholder="Photos (url séparées par ',')" value="<%= artist ? artist.photo : '' %>"/>
+  <input type="text" name="title" placeholder="Nom" value="<%= artist ? artist.name : '' %>" class="form-control"/>
+  <input type="text" name="photo" placeholder="Photos (url séparées par ',')" value="<%= artist ? artist.photo : '' %>" class="form-control"/>
   </div>
 	
 	<div class="form-group">
   <label>Date de naissance: </label>
-  <input type="date" name="date" placeholder="Date"  value="<%= artist ? artist.birthDate : '' %>"/>
+  <input type="date" name="date" placeholder="Date"  value="<%= artist ? artist.birthDate : '' %>" class="form-control"/>
   </div>
   <div class="form-group">
-  <input type="text" name="city" placeholder="Ville" value="<%= artist ? artist.city : '' %>"/>
-  <input type="text" name="nationality" placeholder="Nationalité" value="<%= artist ? artist.nationality : '' %>"/>
+  <input type="text" name="city" placeholder="Ville" value="<%= artist ? artist.city : '' %>" class="form-control"/>
+  <input type="text" name="nationality" placeholder="Nationalité" value="<%= artist ? artist.nationality : '' %>" class="form-control"/>
   </div>
 
 	<div class="form-group">
   <label>Note: </label>
-  <textarea name="description" rows="5" cols="50" placeholder="Description..."><%= artist ? artist.description : '' %></textarea>
+  <textarea name="description" rows="5" cols="50" placeholder="Description..." class="form-control"><%= artist ? artist.description : '' %></textarea>
   </div>
 	<div class="form-group">
   <label>Type: </label>
-  <select name="type">
+  <select name="type" class="form-control">
 		<option value="PAINTING">PAINTING</option>
 		<option value="DRAWING">DRAWING</option>
 		<option value="SCULPTURE">SCULPTURE</option>

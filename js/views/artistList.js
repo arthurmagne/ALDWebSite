@@ -9,18 +9,70 @@ define([
 ], function($, _, Backbone, artistsTemplate, Artists){
   var ArtistList = Backbone.View.extend({
     el: '#page',
-    render: function () {
+    render: function (options) {
       var that = this;
-      var artists = new Artists();
-      
-      // on récupère les artists en fetchant
-      artists.fetch({
-        success: function (artists) {
-          var template = _.template(artistsTemplate, {artists: artists.models});
-          $('#myCarousel').addClass('hide');
-          that.$el.html(template);
+      if (options){
+        if (options.city) {
+          console.log("artists avec city");
+          var artists = new Artists({city: options.city});
+        
+          // on récupère les artists en fetchant
+          artists.fetch({
+            success: function (artists) {
+              var template = _.template(artistsTemplate, {artists: artists.models});
+              $('#myCarousel').addClass('hide');
+              that.$el.html(template);
+            }
+          });
+        }else if (options.nationality) {
+          console.log("artists avec nationality");
+          var artists = new Artists({nationality: options.nationality});
+        
+          // on récupère les artists en fetchant
+          artists.fetch({
+            success: function (artists) {
+              var template = _.template(artistsTemplate, {artists: artists.models});
+              $('#myCarousel').addClass('hide');
+              that.$el.html(template);
+            }
+          });
+        }else if (options.name) {
+          console.log("artists avec name");
+          var artists = new Artists({name: options.name});
+        
+          // on récupère les artists en fetchant
+          artists.fetch({
+            success: function (artists) {
+              var template = _.template(artistsTemplate, {artists: artists.models});
+              $('#myCarousel').addClass('hide');
+              that.$el.html(template);
+            }
+          });
+        }else if (options.bool) {
+          console.log("artists représentés");
+          var artists = new Artists({bool: true});
+        
+          // on récupère les artists en fetchant
+          artists.fetch({
+            success: function (artists) {
+              var template = _.template(artistsTemplate, {artists: artists.models});
+              $('#myCarousel').addClass('hide');
+              that.$el.html(template);
+            }
+          });
         }
-      })
+      }else{
+        var artists = new Artists();
+        
+        // on récupère les artists en fetchant
+        artists.fetch({
+          success: function (artists) {
+            var template = _.template(artistsTemplate, {artists: artists.models});
+            $('#myCarousel').addClass('hide');
+            that.$el.html(template);
+          }
+        });
+      }
     }
   });
 

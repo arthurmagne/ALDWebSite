@@ -1,4 +1,7 @@
 <div class="artist-list">
+  <% if (artists.length == 0) { %>
+    <h2 class="text-center text-muted">Aucun artiste n'a été trouvé</h2>
+  <% }else{ %>
   <% _.each(artists, function(artistModel, cpt) { %>
     <% var artist = artistModel.attributes.artist; %>
       <% if ((cpt % 2) == 0 ) { %>
@@ -38,8 +41,10 @@
         </div>
       <% } %>
 
-      <hr class="featurette-divider">
   <% }); %>
+  <% } %>
+  <hr class="featurette-divider">
+
   </div>
 
 

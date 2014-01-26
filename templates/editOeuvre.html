@@ -8,20 +8,21 @@
 <hr>
 <form class="add-oeuvre-form form-horizontal">
 	<div class="form-group">
-  <input type="text" name="title" placeholder="Titre" value="<%= oeuvre ? artwork.title : '' %>"/>
-  <input type="text" name="photos" placeholder="Photos (url séparées par ',')" value="<%= oeuvre ? artwork.photos : '' %>"/>
+  <input type="text" name="title" placeholder="Titre" value="<%= oeuvre ? artwork.title : '' %>" class="form-control"/>
+  <input type="text" name="photos" placeholder="Photos (url séparées par ',')" value="<%= oeuvre ? artwork.photos : '' %>" class="form-control"/>
   </div>
   <% if (artists != null) { %> <!-- Création -->
 	  <div class="form-group">
 	  <label>Artiste: </label>
-		<select name="artist">
+		<select name="artist" class="form-control">
+			<option value=""></option>
 		<% _.each(artists, function(artistModel, cpt) { %>
 			<% console.log(artistModel); %>
 	    	<% var artist = artistModel.attributes.artist; %>		
 			<option value="<%= artist.name %>"><%= artist.name %></option>
 		<% }); %>
 		</select>  
-     	<a class="btn btn-default add-artist-btn" href="#/newArtist" role="button">Ajouter un artiste</a>
+     	<p class="text-center"><a class="btn btn-default add-artist-btn" href="#/newArtist" role="button">Ajouter un artiste</a></p>
 		</div>
 	<% } %>
 	<div class="form-group">
@@ -31,29 +32,30 @@
   </div>
 	<div class="form-group">
   <label>Date de création: </label>
-  <input type="date" name="date" placeholder="Date"  value="<%= oeuvre ? artwork.creationDate : '' %>"/>
+  <input type="date" name="date" placeholder="Date"  value="<%= oeuvre ? artwork.creationDate : '' %>" class="form-control"/>
   </div>
 	<div class="form-group">
   <label>Description: </label>
-  <textarea name="description" rows="5" cols="50" placeholder="Description..."><%= oeuvre ? artwork.description : '' %></textarea>
+  <textarea name="description" rows="5" cols="50" placeholder="Description..." class="form-control"><%= oeuvre ? artwork.description : '' %></textarea>
   </div>
 	<div class="form-group">
   <label>Type: </label>
-  <select name="type">
+  <select name="type" class="form-control">
 		<option value="PAINTING">PAINTING</option>
 		<option value="DRAWING">DRAWING</option>
 		<option value="SCULPTURE">SCULPTURE</option>
 		<option value="PHOTO">PHOTO</option>
 	</select>
   <label>Technique: </label>
-	<select name="technique">
+	<select name="technique" class="form-control">
+		<option value=""></option>
 		<option value="AQUARELLE">AQUARELLE</option>
 		<option value="GOUACHE">GOUACHE</option>
 		<option value="PEINTURE_HUILE">PEINTURE_HUILE</option>
 		<option value="PEINTURE_EAU">PEINTURE_EAU</option>
 	</select>
   <label>Support: </label>
-  <select name="support">
+  <select name="support" class="form-control">
 		<option value="TOILE_DE_LIN">TOILE_DE_LIN</option>
 		<option value="COTON">COTON</option>
 		<option value="PAPIER">PAPIER</option>
@@ -71,23 +73,27 @@
 	</div>
 	<div class="dim form-group">
   <label>Dimensions: </label>
-  <input type="text" name="dimX" placeholder="x"  value="<%= oeuvre ? artwork.dimensions.x : '' %>"/>
-  <input type="text" name="dimY" placeholder="y"  value="<%= oeuvre ? artwork.dimensions.y : '' %>"/>
-  <input type="text" name="dimZ" placeholder="z"  value="<%= oeuvre ? artwork.dimensions.z : '' %>"/>
+  <input type="text" name="dimX" placeholder="x"  value="<%= oeuvre ? artwork.dimensions.x : '' %>" class="form-control"/>
+  <input type="text" name="dimY" placeholder="y"  value="<%= oeuvre ? artwork.dimensions.y : '' %>" class="form-control"/>
+  <input type="text" name="dimZ" placeholder="z"  value="<%= oeuvre ? artwork.dimensions.z : '' %>" class="form-control"/>
   </div>
 	<div class="form-group">
 	<% if(oeuvre) { %>
-		<% var tags = ''; %>
 		<% if (artwork.tags) { %>
-			<% _.each(artwork.tags.tags, function(tag, cpt) { %>
-		          <% if (cpt != 0) { %>
-		          	<% tags += ','; %>
-		          <% } %>
-		          <% tags += tag; %>
-		    <% }); %>
+			<% var tags = ''; %>
+        	<% if (typeof artwork.tags.tags !== 'string') { %>
+				<% _.each(artwork.tags.tags, function(tag, cpt) { %>
+			        <% if (cpt != 0) { %>
+			          	<% tags += ','; %>
+			        <% } %>
+			        <% tags += tag; %>
+				<% }); %>
+			<% }else{ %>
+				<% tags = artwork.tags.tags; %>
+			<% } %>
 		<% } %>
 	<% } %>
-  <input type="text" name="tags" placeholder="Tags" value="<%= oeuvre ? tags : '' %>"/>
+  <input type="text" name="tags" placeholder="Tags" value="<%= oeuvre ? tags : '' %>" class="form-control"/>
   </div>
  
 <hr>

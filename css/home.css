@@ -5,6 +5,7 @@
 @import "detailArtist.css";
 @import "detailOeuvre.css";
 @import "lightbox.css";
+@import "search.css";
 
 
 /* GLOBAL STYLES
@@ -27,7 +28,21 @@ body {
 
 .navbar{
   margin-bottom: 0;
+  height: 100%;
 }
+
+.navbar-container{
+  -webkit-transition: height 1s ease-in-out;
+  -moz-transition: height 1s ease-in-out;
+  -o-transition: height 1s ease-in-out;
+  transition: height 1s ease-in-out;
+  height: 50px;
+}
+
+.navbar-container.show{
+  height: 300px;
+}
+
 
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
@@ -75,6 +90,7 @@ body {
   padding-left: 15px;
   padding-right: 15px;
 }
+
 
 
 /* CUSTOMIZE THE CAROUSEL
