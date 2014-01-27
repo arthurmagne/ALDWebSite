@@ -96,7 +96,12 @@ define([
       }
       var that = this;
 
-      var artist = form.find("select[name='artist'] option:selected").val();
+      var artist;
+      if (this.edit == true){
+        artist = form.find("input[name='artist-hidden']").val();
+      }else{
+        artist = form.find("select[name='artist'] option:selected").val();
+      }
       console.log("artist : " + artist);
 
       var _tagsTab = _tags.split(',');

@@ -32,7 +32,7 @@
               <div class="block-info">
                 <p><strong><%= oeuvre.title %></strong></p>
                 <p><% if (oeuvre.artistName != "unknown") { %><%= oeuvre.artistName %><% } %></p>
-                <p><%= oeuvre.technique.toLowerCase() %></p>
+                <p><% if (oeuvre.technique) { %><%= oeuvre.technique.toLowerCase() %><% } %></p>
                 <p>Description: <%= oeuvre.description %></p>
               </div>
             </div>

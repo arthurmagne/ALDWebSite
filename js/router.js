@@ -12,31 +12,7 @@ define([
   'views/detailOeuvre',
   'views/search'
   ], function($, _, Backbone, OeuvreListView, EditOeuvreView, EditArtistView, HomeView, ArtistListView, DetailArtistView, DetailOeuvreView, SearchView){
-  var AppController = Backbone.View.extend({
-    showView: function(options){
-      var closingView = this.view;
 
-      this.view = options.view;
-      console.log("l'id recup dans options : "+options.id);
-      this.view.render({id: options.id});
-      //$(this.view.el).hide();
-      //this.el.append(this.view.el);
-
-      this.openView(this.view);
-      this.closeView(closingView);
-    },
-     openView: function(view){
-
-    },
-
-    closeView: function(view){
-      if (view){
-        view.unbind();
-        view.remove();
-        
-      }
-    }
-  });
   var AppRouter = Backbone.Router.extend({
     routes: {
         '': 'home',
@@ -66,7 +42,6 @@ define([
     },
     initialize: function() {
     	$.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
-     		 //options.url = 'http://backbonejs-beginner.herokuapp.com' + options.url;
          options.url = 'http://localhost:8080/rest/museum' + options.url;
          if (!options.crossDomain) {
             options.crossDomain = true;
@@ -75,15 +50,7 @@ define([
         //jqXHR.setRequestHeader('Accept", "application/json');
 
  		  });
-      var appController = new AppController();
-      this.appController = appController;
-      /*$.ajaxSetup({
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': 'origin, x-requested-with, content-type',
-          'Access-Control-Allow-Methods':'PUT, GET, POST, DELETE, OPTIONS'
-        }
-      });*/
+      
     }
   });
 
@@ -238,7 +205,6 @@ define([
 
     Backbone.View.prototype.goTo = function (loc) {
       app_router.navigate(loc, true);
-      console.log("call proto");
     };
     console.log("initialize");
 

@@ -51,15 +51,26 @@
   </div>
   <h4 class="featurette-heading">Commentaires</h4>
     <% if (artwork.comments.comments && artwork.comments.comments != 0) { %>
-      <% _.each(artwork.comments.comments, function(comment, cpt) { %>
+      <!-- Trouve si on a un seul commentaire -->
+      <% if(artwork.comments.comments instanceof Array) { %>
+        <% _.each(artwork.comments.comments, function(comment, cpt) { %>
+          <div class="comment-container">
+            <hr>
+            <span class="comment-author"><%= comment.author %></span>
+            <p class="comment-content"><%= comment.content %></p>
+            <% var date = new Date(comment.postDate).toDateString(); %>
+            <p class="comment-date"><%= date %></p>
+          </div>
+        <% }); %>
+      <% }else{ %>
         <div class="comment-container">
-          <hr>
-          <span class="comment-author"><%= comment.author %></span>
-          <p class="comment-content"><%= comment.content %></p>
-          <% var date = new Date(comment.postDate).toDateString(); %>
-          <p class="comment-date"><%= date %></p>
-        </div>
-      <% }); %>
+            <hr>
+            <span class="comment-author"><%= artwork.comments.comments.author %></span>
+            <p class="comment-content"><%= artwork.comments.comments.content %></p>
+            <% var date = new Date(artwork.comments.comments.postDate).toDateString(); %>
+            <p class="comment-date"><%= date %></p>
+          </div>
+      <% } %>
     <% }else{ %>
       <p class="text-muted">Aucun commentaire</p>
     <% } %>
